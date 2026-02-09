@@ -98,7 +98,7 @@ def update_upload_session(upload_id, status, results=None):
     )
 
 # MongoDB connection
-# MongoDB connectio
+# MongoDB connection
 # MongoDB connection
 try:
     # Debug: Print all environment variables starting with MONGO
