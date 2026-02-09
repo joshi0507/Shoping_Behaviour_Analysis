@@ -26,6 +26,10 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
+# Import analytics and AI services
+from analytics_mongo import generate_insights
+from gemini_service import gemini_service
+
 # Ensure templates directory exists
 os.makedirs('templates', exist_ok=True)
 
@@ -573,8 +577,92 @@ def upload():
         ])
 
         # Generate analytics and insights
-        from analytics_mongo import generate_insights
         insights = generate_insights(prod_sales, df)
+        
+        # 1. Most Selling Products
+        most_selling = prod_sales.nlargest(10, 'units_sold')
+        fig_most = px.bar(most_selling, x='product_name', y='units_sold', 
+                          title='Most Selling Products (Top 10)', 
+                          labels={'units_sold': 'Total Units Sold'})
+        graph_most = fig_most.to_json()
+        top_product = most_selling.iloc[0]['product_name']
+        top_units = most_selling.iloc[0]['units_sold']
+        note_most = f"Most trending product: {top_product} with {top_units:.0f} units sold overall."
+
+        # 2. Low Selling Products
+        low_selling = prod_sales.nsmallest(10, 'units_sold')
+        fig_low = px.bar(low_selling, x='product_name', y='units_sold', 
+                         title='Low Selling Products (Bottom 10)', 
+                         labels={'units_sold': 'Total Units Sold'})
+        graph_low = fig_low.to_json()
+        low_product = low_selling.iloc[0]['product_name']
+        low_units = low_selling.iloc[0]['units_sold']
+        note_low = f"Lowest selling product: {low_product} with only {low_units:.0f} units sold."
+
+        # 3. High Cost but Most Sold
+        median_price = prod_sales['price'].median()
+        high_price_prods = prod_sales[prod_sales['price'] > median_price].nlargest(10, 'units_sold')
+        fig_high_cost = px.scatter(high_price_prods, x='price', y='units_sold', size='units_sold', 
+                                   hover_name='product_name', 
+                                   title='High Cost but Most Sold Products',
+                                   labels={'price': 'Average Price', 'units_sold': 'Total Units Sold'})
+        graph_high_cost = fig_high_cost.to_json()
+        if len(high_price_prods) > 0:
+            top_high = high_price_prods.iloc[0]['product_name']
+            note_high = f"Top high-cost seller: {top_high} at avg ${high_price_prods.iloc[0]['price']:.2f} with high sales volume."
+        else:
+            note_high = "No high-cost products with significant sales."
+
+        # 4. Low Cost but Most Sold
+        low_price_prods = prod_sales[prod_sales['price'] <= median_price].nlargest(10, 'units_sold')
+        fig_low_cost = px.scatter(low_price_prods, x='price', y='units_sold', size='units_sold', 
+                                  hover_name='product_name', 
+                                  title='Low Cost but Most Sold Products',
+                                  labels={'price': 'Average Price', 'units_sold': 'Total Units Sold'})
+        graph_low_cost = fig_low_cost.to_json()
+        if len(low_price_prods) > 0:
+            top_low = low_price_prods.iloc[0]['product_name']
+            note_low_cost = f"Top low-cost seller: {top_low} at avg ${low_price_prods.iloc[0]['price']:.2f} with high sales volume."
+        else:
+            note_low_cost = "No low-cost products with significant sales."
+        
+        # 5. Sales Prediction with Prophet - Calculate daily_sales early for Gemini
+        logger.info('Generating sales prediction with Prophet')
+        daily_pipeline = [
+            {
+                '$group': {
+                    '_id': '$date',
+                    'units_sold': {'$sum': '$units_sold'}
+                }
+            },
+            {'$sort': {'_id': 1}}
+        ]
+        daily_sales_cursor = db.sales_data.aggregate(daily_pipeline)
+        daily_sales_data = list(daily_sales_cursor)
+        
+        if not daily_sales_data:
+            error_msg = 'No daily sales data found for prediction'
+            logger.warning(error_msg)
+            return jsonify({'error': error_msg}), 400
+        
+        daily_sales = pd.DataFrame([
+            {'date': item['_id'], 'units_sold': item['units_sold']}
+            for item in daily_sales_data
+        ])
+        daily_sales['date'] = pd.to_datetime(daily_sales['date'])
+        
+        # Generate AI-powered business insights using Gemini
+        analytics_data = {
+            'most_selling': most_selling.to_dict('records') if len(most_selling) > 0 else [],
+            'low_selling': low_selling.to_dict('records') if len(low_selling) > 0 else [],
+            'high_cost_products': high_price_prods.to_dict('records') if len(high_price_prods) > 0 else [],
+            'low_cost_products': low_price_prods.to_dict('records') if len(low_price_prods) > 0 else [],
+            'daily_sales': daily_sales.to_dict('records') if len(daily_sales) > 0 else [],
+            'product_performance': prod_sales.to_dict('records') if len(prod_sales) > 0 else [],
+            'insights': insights
+        }
+        
+        ai_insights = gemini_service.generate_business_insights(analytics_data)
         
         # Ensure insights are JSON serializable
         if isinstance(insights, dict):
@@ -615,7 +703,7 @@ def upload():
                                    title='High Cost but Most Sold Products',
                                    labels={'price': 'Average Price', 'units_sold': 'Total Units Sold'})
         graph_high_cost = fig_high_cost.to_json()
-        if not high_price_prods.empty:
+        if len(high_price_prods) > 0:
             top_high = high_price_prods.iloc[0]['product_name']
             note_high = f"Top high-cost seller: {top_high} at avg ${high_price_prods.iloc[0]['price']:.2f} with high sales volume."
         else:
@@ -628,36 +716,14 @@ def upload():
                                   title='Low Cost but Most Sold Products',
                                   labels={'price': 'Average Price', 'units_sold': 'Total Units Sold'})
         graph_low_cost = fig_low_cost.to_json()
-        if not low_price_prods.empty:
+        if len(low_price_prods) > 0:
             top_low = low_price_prods.iloc[0]['product_name']
             note_low_cost = f"Top low-cost seller: {top_low} at avg ${low_price_prods.iloc[0]['price']:.2f} with high sales volume."
         else:
             note_low_cost = "No low-cost products with significant sales."
 
-        # 5. Sales Prediction with Prophet
+        # 5. Sales Prediction with Prophet - Continue with existing daily_sales
         logger.info('Generating sales prediction with Prophet')
-        daily_pipeline = [
-            {
-                '$group': {
-                    '_id': '$date',
-                    'units_sold': {'$sum': '$units_sold'}
-                }
-            },
-            {'$sort': {'_id': 1}}
-        ]
-        daily_sales_cursor = db.sales_data.aggregate(daily_pipeline)
-        daily_sales_data = list(daily_sales_cursor)
-        
-        if not daily_sales_data:
-            error_msg = 'No daily sales data found for prediction'
-            logger.warning(error_msg)
-            return jsonify({'error': error_msg}), 400
-        
-        daily_sales = pd.DataFrame([
-            {'date': item['_id'], 'units_sold': item['units_sold']}
-            for item in daily_sales_data
-        ])
-        daily_sales['date'] = pd.to_datetime(daily_sales['date'])
         
         if len(daily_sales) < 2:
             # Insert single entry into daily_sales collection
@@ -736,6 +802,7 @@ def upload():
             'sales_prediction': {'graph': graph_pred, 'note': note_pred},
             'product_report': {'graph': graph_report, 'note': note_report},
             'insights': insights,
+            'ai_insights': ai_insights,
             'upload_id': upload_id,
             'file_type': file_type
         }

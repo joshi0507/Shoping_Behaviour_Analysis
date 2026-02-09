@@ -22,8 +22,8 @@ def generate_insights(prod_sales_df, raw_sales_df):
         insights = {}
         
         # Convert DataFrames to dictionaries for JSON serialization
-        prod_sales_dict = prod_sales_df.to_dict('records') if not prod_sales_df.empty else []
-        raw_sales_dict = raw_sales_df.to_dict('records') if not raw_sales_df.empty else []
+        prod_sales_dict = prod_sales_df.to_dict('records') if len(prod_sales_df) > 0 else []
+        raw_sales_dict = raw_sales_df.to_dict('records') if len(raw_sales_df) > 0 else []
         
         # Basic Statistics
         total_products = len(prod_sales_df)
@@ -33,7 +33,7 @@ def generate_insights(prod_sales_df, raw_sales_df):
         avg_units_per_product = prod_sales_df['units_sold'].mean()
         
         # Top and Bottom Performers
-        if not prod_sales_df.empty:
+        if len(prod_sales_df) > 0:
             top_performer = prod_sales_df.loc[prod_sales_df['units_sold'].idxmax()]
             bottom_performer = prod_sales_df.loc[prod_sales_df['units_sold'].idxmin()]
             
@@ -54,7 +54,7 @@ def generate_insights(prod_sales_df, raw_sales_df):
         
         # Revenue Analysis
         prod_sales_df['revenue'] = prod_sales_df['units_sold'] * prod_sales_df['price']
-        if not prod_sales_df.empty:
+        if len(prod_sales_df) > 0:
             top_revenue_product = prod_sales_df.loc[prod_sales_df['revenue'].idxmax()]
             top_revenue_dict = {
                 'product_name': str(top_revenue_product['product_name']),
@@ -64,7 +64,7 @@ def generate_insights(prod_sales_df, raw_sales_df):
             top_revenue_dict = {'product_name': 'N/A', 'revenue': 0}
         
         # Price Segmentation
-        if not prod_sales_df.empty:
+        if len(prod_sales_df) > 0:
             price_quartiles = prod_sales_df['price'].quantile([0.25, 0.5, 0.75])
             low_price_threshold = float(price_quartiles[0.25])
             high_price_threshold = float(price_quartiles[0.75])
@@ -81,7 +81,7 @@ def generate_insights(prod_sales_df, raw_sales_df):
             high_price_products_list = []
         
         # Performance Categories
-        if not prod_sales_df.empty:
+        if len(prod_sales_df) > 0:
             prod_sales_df['performance_category'] = pd.cut(
                 prod_sales_df['units_sold'],
                 bins=[0, prod_sales_df['units_sold'].quantile(0.33), 

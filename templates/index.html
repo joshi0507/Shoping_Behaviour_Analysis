@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProAnz Analytics - MongoDB Powered Sales Dashboard</title>
+    <title>Shopping Behaviour Analysis Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -399,6 +399,92 @@
             color: white;
             border-radius: 10px 10px 0 0;
         }
+        
+        /* AI Insights Styles */
+        .insight-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+        
+        .insight-section h3 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), transparent);
+            border-radius: 10px;
+        }
+        
+        .insight-section .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .insight-section .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .insight-section .card-header {
+            border: none;
+            border-radius: 12px 12px 0 0;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .insight-section .card-body {
+            padding: 20px;
+        }
+        
+        .insight-section .card-body ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .insight-section .card-body li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .ai-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .ai-insights-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .ai-insights-header h4 {
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        .ai-insights-header p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -406,7 +492,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-chart-line me-2"></i>ProAnz Analytics
+                <i class="fas fa-chart-line me-2"></i>Sopper Behaviour Analytics Dashboard
             </a>
             <div class="navbar-nav ms-auto">
                 <div class="nav-item dropdown">
@@ -590,6 +676,7 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="insights-tab" data-bs-toggle="tab" data-bs-target="#insights" type="button" role="tab">
                         <i class="bi bi-lightbulb"></i> Business Insights
+                        <span class="ai-badge">AI</span>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -1046,6 +1133,11 @@
                 displayActions(data.insights);
                 displayKeyMetrics(data.insights);
             }
+            
+            // Display AI-powered business insights
+            if (data.ai_insights) {
+                displayAIInsights(data.ai_insights);
+            }
         }
 
         function displayKeyMetrics(insights) {
@@ -1201,6 +1293,309 @@
                                 <div class="col-md-4">
                                     <div class="alert alert-info">
                                         <strong>90 Days:</strong> ${actions.timeline['90_days']}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function displayAIInsights(ai_insights) {
+            const insightsContainer = document.getElementById('insightsContent');
+            insightsContainer.innerHTML = '';
+            
+            if (!ai_insights || !ai_insights.ai_insights) {
+                insightsContainer.innerHTML = `
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        AI-powered business insights are not available. Please configure the Gemini API key.
+                    </div>
+                `;
+                return;
+            }
+            
+            const insights = ai_insights.ai_insights;
+            
+            // Executive Summary
+            if (insights.executive_summary) {
+                const exec = insights.executive_summary;
+                insightsContainer.innerHTML += `
+                    <div class="insight-section mb-4">
+                        <h3 class="mb-3">
+                            <i class="bi bi-star-fill text-warning me-2"></i>${exec.title}
+                        </h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-primary">
+                                    <h5>Key Takeaways</h5>
+                                    <ul>
+                                        ${exec.key_takeaways.map(takeaway => `<li>${takeaway}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div class="alert alert-success">
+                                    <h5>Critical Success Factors</h5>
+                                    <ul>
+                                        ${exec.critical_success_factors.map(factor => `<li>${factor}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div class="alert alert-info">
+                                    <h5>Recommended Next Steps</h5>
+                                    <ul>
+                                        ${exec.next_steps.map(step => `<li>${step}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Performance Analysis
+            if (insights.performance_analysis) {
+                const perf = insights.performance_analysis;
+                insightsContainer.innerHTML += `
+                    <div class="insight-section mb-4">
+                        <h3 class="mb-3">
+                            <i class="bi bi-graph-up text-success me-2"></i>${perf.title}
+                        </h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card border-success">
+                                    <div class="card-header bg-success text-white">
+                                        <h6><i class="bi bi-trophy me-2"></i>Top Performers</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${perf.top_performers.map(performer => `<li><strong>${performer}</strong></li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card border-warning">
+                                    <div class="card-header bg-warning text-dark">
+                                        <h6><i class="bi bi-exclamation-triangle me-2"></i>Improvement Areas</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${perf.improvement_areas.map(area => `<li>${area}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="card border-info">
+                                    <div class="card-header bg-info text-white">
+                                        <h6><i class="bi bi-lightbulb me-2"></i>Key Insights</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${perf.key_insights.map(insight => `<li>${insight}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Market Insights
+            if (insights.market_insights) {
+                const market = insights.market_insights;
+                insightsContainer.innerHTML += `
+                    <div class="insight-section mb-4">
+                        <h3 class="mb-3">
+                            <i class="bi bi-globe text-primary me-2"></i>${market.title}
+                        </h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card border-primary">
+                                    <div class="card-header bg-primary text-white">
+                                        <h6><i class="bi bi-graph-up-arrow me-2"></i>Market Trends</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${market.trends.map(trend => `<li>${trend}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-success">
+                                    <div class="card-header bg-success text-white">
+                                        <h6><i class="bi bi-star me-2"></i>Opportunities</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${market.opportunities.map(opp => `<li>${opp}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-info">
+                                    <div class="card-header bg-info text-white">
+                                        <h6><i class="bi bi-compass me-2"></i>Recommendations</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${market.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Strategic Recommendations
+            if (insights.strategic_recommendations) {
+                const strategy = insights.strategic_recommendations;
+                insightsContainer.innerHTML += `
+                    <div class="insight-section mb-4">
+                        <h3 class="mb-3">
+                            <i class="bi bi-flag text-danger me-2"></i>${strategy.title}
+                        </h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card border-danger">
+                                    <div class="card-header bg-danger text-white">
+                                        <h6><i class="bi bi-lightning me-2"></i>Immediate Actions</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${strategy.immediate_actions.map(action => `<li><strong>${action}</strong></li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-warning">
+                                    <div class="card-header bg-warning text-dark">
+                                        <h6><i class="bi bi-calendar-week me-2"></i>Short-term Strategies</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${strategy.short_term_strategies.map(strat => `<li>${strat}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-primary">
+                                    <div class="card-header bg-primary text-white">
+                                        <h6><i class="bi bi-calendar-month me-2"></i>Long-term Initiatives</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${strategy.long_term_initiatives.map(init => `<li>${init}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Financial Insights
+            if (insights.financial_insights) {
+                const financial = insights.financial_insights;
+                insightsContainer.innerHTML += `
+                    <div class="insight-section mb-4">
+                        <h3 class="mb-3">
+                            <i class="bi bi-currency-dollar text-success me-2"></i>${financial.title}
+                        </h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card border-success">
+                                    <div class="card-header bg-success text-white">
+                                        <h6><i class="bi bi-graph-up me-2"></i>Revenue Optimization</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${financial.revenue_optimization.map(opt => `<li>${opt}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-warning">
+                                    <div class="card-header bg-warning text-dark">
+                                        <h6><i class="bi bi-scissors me-2"></i>Cost Reduction</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${financial.cost_reduction.map(cost => `<li>${cost}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-info">
+                                    <div class="card-header bg-info text-white">
+                                        <h6><i class="bi bi-tags me-2"></i>Pricing Strategy</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${financial.pricing_strategy.map(price => `<li>${price}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Operational Efficiency
+            if (insights.operational_efficiency) {
+                const ops = insights.operational_efficiency;
+                insightsContainer.innerHTML += `
+                    <div class="insight-section mb-4">
+                        <h3 class="mb-3">
+                            <i class="bi bi-gear text-info me-2"></i>${ops.title}
+                        </h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card border-primary">
+                                    <div class="card-header bg-primary text-white">
+                                        <h6><i class="bi bi-box-seam me-2"></i>Inventory Insights</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${ops.inventory_insights.map(insight => `<li>${insight}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-success">
+                                    <div class="card-header bg-success text-white">
+                                        <h6><i class="bi bi-arrow-repeat me-2"></i>Process Improvements</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${ops.process_improvements.map(improvement => `<li>${improvement}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-info">
+                                    <div class="card-header bg-info text-white">
+                                        <h6><i class="bi bi-cpu me-2"></i>Technology Opportunities</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            ${ops.technology_opportunities.map(tech => `<li>${tech}</li>`).join('')}
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
