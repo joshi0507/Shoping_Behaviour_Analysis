@@ -1,4 +1,4 @@
-Flask==2.3.4
+Flask==2.3.3
 Flask-SocketIO==5.3.7
 pandas==2.1.0
 numpy==1.25.0
