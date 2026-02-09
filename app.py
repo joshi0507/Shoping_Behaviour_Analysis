@@ -62,8 +62,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)
 # CORS configuration for production
 if app.config.get('ENVIRONMENT') == 'production':
     CORS(app, origins=[
-        "https://proanz-analytics.onrender.com",
-        "https://www.proanz-analytics.onrender.com"
+        "https://shoping-behaviour-analysis.onrender.com",
     ])
 else:
     CORS(app, origins="*")
