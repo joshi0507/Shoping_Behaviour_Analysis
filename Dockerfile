@@ -1,4 +1,5 @@
-FROM python:3.11-slim
+# Use Python 3.10-slim base image
+FROM python:3.10-slim
 
 # Install system dependencies required for Prophet / Stan
 RUN apt-get update && apt-get install -y \
@@ -9,7 +10,6 @@ RUN apt-get update && apt-get install -y \
     liblapack-dev \
     libblas-dev \
     && rm -rf /var/lib/apt/lists/*
-
 
 # Create workdir
 WORKDIR /app
@@ -23,8 +23,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy your app code
 COPY . .
 
-
-
 # Start your app using Render's $PORT
 CMD gunicorn --worker-class eventlet -w 1 -b 0.0.0.0:$PORT app:app
-
