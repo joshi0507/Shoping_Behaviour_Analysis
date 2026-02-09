@@ -98,11 +98,15 @@ def update_upload_session(upload_id, status, results=None):
     )
 
 # MongoDB connection
+# MongoDB connection
 try:
-    MONGO_URI = os.getenv('MONGO_URI', 'mongodb://localhost:27017/')
+    MONGO_URI = os.getenv('MONGO_URI')
+    if not MONGO_URI:
+        raise ValueError("MONGO_URI not set in environment variables!")
+    
     client = MongoClient(MONGO_URI)
     db = client['proanz_analytics']
-    logger.info('Connected to MongoDB successfully')
+    logger.info(f'Connected to MongoDB: {MONGO_URI[:20]}...')  # First 20 chars only
 except Exception as e:
     logger.error(f'MongoDB connection error: {str(e)}')
     raise
