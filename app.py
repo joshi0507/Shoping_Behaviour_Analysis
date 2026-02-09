@@ -21,14 +21,21 @@ import sys
 import os
 from functools import wraps
 import uuid
+from datetime import timedelta
 from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
 
+# Import configuration
+from config import config
+
 # Import analytics and AI services
 from analytics_mongo import generate_insights
 from gemini_service import gemini_service
+
+# CORS support for production
+from flask_cors import CORS
 
 # Ensure templates directory exists
 os.makedirs('templates', exist_ok=True)
@@ -44,9 +51,28 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Initialize Flask app with environment-based config
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-here-change-in-production')
+environment = os.getenv('FLASK_ENV', 'default')
+app.config.from_object(config[environment])
+
+# Configure session
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)
+
+# CORS configuration for production
+if app.config.get('ENVIRONMENT') == 'production':
+    CORS(app, origins=[
+        "https://proanz-analytics.onrender.com",
+        "https://www.proanz-analytics.onrender.com"
+    ])
+else:
+    CORS(app, origins="*")
+
+# Ensure upload directory exists
+UPLOAD_FOLDER = app.config.get('UPLOAD_FOLDER', os.path.join(os.getcwd(), 'uploads'))
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Authentication middleware
 def login_required(f):
@@ -97,14 +123,15 @@ def update_upload_session(upload_id, status, results=None):
         {'$set': update_data}
     )
 
-# MongoDB connection
+# MongoDB connection with production configuration
 try:
-    MONGO_URI = os.getenv('MONGO_URI', 'mongodb://localhost:27017/')
+    MONGO_URI = app.config['MONGO_URI']
     client = MongoClient(MONGO_URI)
-    db = client['proanz_analytics']
-    logger.info('Connected to MongoDB successfully')
+    db_name = MONGO_URI.split('/')[-1] if '/' in MONGO_URI else 'proanz_analytics'
+    db = client[db_name]
+    logger.info(f'Connected to MongoDB successfully: {db_name}')
 except Exception as e:
-    logger.error(f'MongoDB connection error: {str(e)}')
+    logger.error(f'MongoDB connection failed: {str(e)}')
     raise
 
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading', logger=True, engineio_logger=True)

@@ -2596,3 +2596,392 @@ information about how to avoid this problem.
 This typically means that you attempted to use functionality that needed
 an active HTTP request. Consult the documentation on testing for
 information about how to avoid this problem.
+2026-02-09 20:06:27,844 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:06:37,884 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:06:47,924 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:06:57,973 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:07:08,014 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:07:15,421 - __main__ - WARNING - 404 Not Found: http://127.0.0.1:5000/favicon.ico
+2026-02-09 20:07:15,443 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:07:15] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-02-09 20:07:18,078 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:07:28,134 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:07:38,175 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:07:48,216 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:07:58,257 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:08:08,299 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:08:18,340 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:08:28,382 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:08:38,421 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:08:48,462 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:08:58,515 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:09:08,555 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:09:18,603 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:09:28,655 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:09:38,702 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:09:48,744 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:09:58,786 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:10:08,829 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:10:18,937 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:10:28,980 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:10:39,019 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:10:49,057 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:10:59,110 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:11:09,150 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:11:19,190 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:11:29,234 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:11:39,278 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:11:49,318 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:11:59,358 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:12:09,395 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:12:19,434 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:12:29,474 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:12:39,512 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:12:49,553 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:12:59,606 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:13:09,654 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:13:19,699 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:13:29,737 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:13:39,788 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:13:49,834 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:13:59,872 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:14:09,917 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:14:19,955 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:14:30,017 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:14:40,071 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:14:50,110 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:15:00,161 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:15:10,215 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:15:20,253 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:15:30,294 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:15:40,332 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:15:50,384 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:16:00,423 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:16:10,466 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:16:20,509 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:16:30,550 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:16:40,590 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:16:50,633 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:17:00,685 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:17:10,730 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:17:20,771 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:17:30,808 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:17:40,846 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:17:50,884 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:18:00,924 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:18:10,964 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:18:21,003 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:18:31,047 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:18:41,088 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:18:51,129 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:19:01,181 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:19:11,223 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:19:12,471 - werkzeug - INFO -  * Detected change in 'C:\\Users\\ahuja\\Documents\\BCA 5th sem\\TB Internship Project\\ProAnz-app\\app.py', reloading
+2026-02-09 20:19:16,467 - werkzeug - INFO -  * Restarting with stat
