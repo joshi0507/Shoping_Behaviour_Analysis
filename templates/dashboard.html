@@ -196,7 +196,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <i class="fas fa-chart-line me-2"></i>ProAnz Analytics
+                <i class="fas fa-chart-line me-2"></i>Shopper Behaviour Analytics Dashboard
             </a>
             <div class="navbar-nav ms-auto">
                 <div class="nav-item dropdown">
@@ -898,10 +898,26 @@
             // Navigate to the dashboard with the upload ID
             window.location.href = `/dashboard?upload_id=${uploadId}`;
         }
-
+        async function checkAuthStatus() {
+            try {
+                const response = await fetch('/api/auth/current-user');
+                const data = await response.json();
+                
+                if (data.success) {
+                    currentUser = data.user;
+                    document.getElementById('currentUsername').textContent = data.user.username;
+                } else {
+                    window.location.href = '/auth';
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                window.location.href = '/auth';
+            }
+        }
         // Initialize dashboard on page load
         document.addEventListener('DOMContentLoaded', function() {
             fetchDashboardData();
+            checkAuthStatus()
         });
     </script>
 

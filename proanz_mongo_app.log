@@ -2218,3 +2218,381 @@ cwd: None
 2026-02-09 19:57:38,598 - engineio.server - INFO - rzpjZgAE2kltQNRtAAAc: Received request to upgrade to websocket
 2026-02-09 19:57:38,610 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:57:38] "GET /socket.io/?EIO=4&transport=polling&t=Pn2pGNl&sid=rzpjZgAE2kltQNRtAAAc HTTP/1.1" 200 -
 2026-02-09 19:57:38,615 - engineio.server - INFO - rzpjZgAE2kltQNRtAAAc: Upgrade to websocket successful
+2026-02-09 19:58:03,271 - engineio.server - INFO - rzpjZgAE2kltQNRtAAAc: Sending packet PING data None
+2026-02-09 19:58:03,284 - engineio.server - INFO - rzpjZgAE2kltQNRtAAAc: Received packet PONG data 
+2026-02-09 19:58:28,285 - engineio.server - INFO - rzpjZgAE2kltQNRtAAAc: Sending packet PING data None
+2026-02-09 19:58:28,287 - engineio.server - INFO - rzpjZgAE2kltQNRtAAAc: Received packet PONG data 
+2026-02-09 19:58:53,287 - engineio.server - INFO - rzpjZgAE2kltQNRtAAAc: Sending packet PING data None
+2026-02-09 19:58:53,288 - engineio.server - INFO - rzpjZgAE2kltQNRtAAAc: Received packet PONG data 
+2026-02-09 19:58:55,661 - engineio.server - INFO - rzpjZgAE2kltQNRtAAAc: Received packet MESSAGE data 2["start_streaming"]
+2026-02-09 19:58:55,664 - socketio.server - INFO - received event "start_streaming" from noGInFkmny98CmdIAAAd [/]
+2026-02-09 19:58:55,668 - __main__ - INFO - Starting streaming for client: noGInFkmny98CmdIAAAd
+2026-02-09 19:58:55,670 - __main__ - INFO - Starting background thread for real-time sales simulation
+2026-02-09 19:58:55,670 - socketio.server - INFO - emitting event "streaming_started" to noGInFkmny98CmdIAAAd [/]
+2026-02-09 19:58:55,670 - __main__ - INFO - Initialized default historical sales data
+2026-02-09 19:58:55,671 - engineio.server - INFO - rzpjZgAE2kltQNRtAAAc: Sending packet MESSAGE data 2["streaming_started",{"status":"Real-time sales data streaming initiated"}]
+2026-02-09 19:58:55,809 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 19:59:05,855 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 19:59:11,211 - __main__ - INFO - Client disconnected: noGInFkmny98CmdIAAAd
+2026-02-09 19:59:11,212 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:11] "GET /socket.io/?EIO=4&transport=websocket&sid=rzpjZgAE2kltQNRtAAAc HTTP/1.1" 200 -
+2026-02-09 19:59:11,537 - __main__ - INFO - Serving index page
+2026-02-09 19:59:11,550 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:11] "GET / HTTP/1.1" 200 -
+2026-02-09 19:59:11,902 - engineio.server - INFO - DHq69avBN2jGKTVlAAAe: Sending packet OPEN data {'sid': 'DHq69avBN2jGKTVlAAAe', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2026-02-09 19:59:11,904 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:11] "GET /socket.io/?EIO=4&transport=polling&t=Pn2pd9O HTTP/1.1" 200 -
+2026-02-09 19:59:12,246 - engineio.server - INFO - DHq69avBN2jGKTVlAAAe: Received packet MESSAGE data 0
+2026-02-09 19:59:12,249 - engineio.server - INFO - DHq69avBN2jGKTVlAAAe: Received request to upgrade to websocket
+2026-02-09 19:59:12,252 - __main__ - INFO - Client connected: D9iReaqSGuVLPna0AAAf
+2026-02-09 19:59:12,260 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:12] "GET /socket.io/?EIO=4&transport=polling&t=Pn2pd9n&sid=DHq69avBN2jGKTVlAAAe HTTP/1.1" 200 -
+2026-02-09 19:59:12,258 - socketio.server - INFO - emitting event "Connected" to D9iReaqSGuVLPna0AAAf [/]
+2026-02-09 19:59:12,265 - engineio.server - INFO - DHq69avBN2jGKTVlAAAe: Sending packet MESSAGE data 2["Connected",{"message":"Welcome to real-time analytics!"}]
+2026-02-09 19:59:12,270 - engineio.server - INFO - DHq69avBN2jGKTVlAAAe: Sending packet MESSAGE data 0{"sid":"D9iReaqSGuVLPna0AAAf"}
+2026-02-09 19:59:12,271 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:12] "POST /socket.io/?EIO=4&transport=polling&t=Pn2pd9l&sid=DHq69avBN2jGKTVlAAAe HTTP/1.1" 200 -
+2026-02-09 19:59:12,278 - engineio.server - INFO - DHq69avBN2jGKTVlAAAe: Upgrade to websocket successful
+2026-02-09 19:59:12,288 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:12] "GET /api/auth/current-user HTTP/1.1" 200 -
+2026-02-09 19:59:15,899 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 19:59:25,944 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 19:59:35,990 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 19:59:36,904 - engineio.server - INFO - DHq69avBN2jGKTVlAAAe: Sending packet PING data None
+2026-02-09 19:59:36,905 - engineio.server - INFO - DHq69avBN2jGKTVlAAAe: Received packet PONG data 
+2026-02-09 19:59:39,039 - __main__ - INFO - Client disconnected: D9iReaqSGuVLPna0AAAf
+2026-02-09 19:59:39,040 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:39] "GET /socket.io/?EIO=4&transport=websocket&sid=DHq69avBN2jGKTVlAAAe HTTP/1.1" 200 -
+2026-02-09 19:59:39,361 - __main__ - INFO - Serving index page
+2026-02-09 19:59:39,362 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:39] "GET / HTTP/1.1" 200 -
+2026-02-09 19:59:39,627 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Sending packet OPEN data {'sid': '-18PUBi_fCJgharBAAAg', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2026-02-09 19:59:39,629 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:39] "GET /socket.io/?EIO=4&transport=polling&t=Pn2pju- HTTP/1.1" 200 -
+2026-02-09 19:59:39,844 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Received packet MESSAGE data 0
+2026-02-09 19:59:39,845 - __main__ - INFO - Client connected: TgUn16OfQ3HJkkdCAAAh
+2026-02-09 19:59:39,845 - socketio.server - INFO - emitting event "Connected" to TgUn16OfQ3HJkkdCAAAh [/]
+2026-02-09 19:59:39,845 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Sending packet MESSAGE data 2["Connected",{"message":"Welcome to real-time analytics!"}]
+2026-02-09 19:59:39,846 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Sending packet MESSAGE data 0{"sid":"TgUn16OfQ3HJkkdCAAAh"}
+2026-02-09 19:59:39,846 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:39] "POST /socket.io/?EIO=4&transport=polling&t=Pn2pjwr&sid=-18PUBi_fCJgharBAAAg HTTP/1.1" 200 -
+2026-02-09 19:59:39,955 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:39] "GET /socket.io/?EIO=4&transport=polling&t=Pn2pjws&sid=-18PUBi_fCJgharBAAAg HTTP/1.1" 200 -
+2026-02-09 19:59:39,956 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Received request to upgrade to websocket
+2026-02-09 19:59:39,973 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:39] "GET /socket.io/?EIO=4&transport=polling&t=Pn2pj_t&sid=-18PUBi_fCJgharBAAAg HTTP/1.1" 200 -
+2026-02-09 19:59:39,978 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Upgrade to websocket successful
+2026-02-09 19:59:40,078 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 19:59:40] "GET /api/auth/current-user HTTP/1.1" 200 -
+2026-02-09 19:59:46,044 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 19:59:56,090 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:00:04,629 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Sending packet PING data None
+2026-02-09 20:00:04,630 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Received packet PONG data 
+2026-02-09 20:00:06,134 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:00:16,179 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:00:26,223 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:00:28,051 - __main__ - INFO - Received upload request
+2026-02-09 20:00:28,067 - __main__ - INFO - Manual upload by user: tanishq
+2026-02-09 20:00:28,067 - __main__ - INFO - Debug - Received: product_names len=1 vals=['Tanishq bhai ki shirt ']
+2026-02-09 20:00:28,068 - __main__ - INFO - Debug - Received: date_strs len=1 vals=['2026-02-03']
+2026-02-09 20:00:28,068 - __main__ - INFO - Debug - Received: units_strs len=1 vals=['50']
+2026-02-09 20:00:28,068 - __main__ - INFO - Debug - Received: price_strs len=1 vals=['500']
+2026-02-09 20:00:28,136 - __main__ - INFO - Manual input processed: 1 rows
+2026-02-09 20:00:28,189 - __main__ - INFO - Cleaning data
+2026-02-09 20:00:28,360 - __main__ - INFO - Cleared existing MongoDB collections
+2026-02-09 20:00:28,361 - __main__ - INFO - Inserting data into sales_data collection
+2026-02-09 20:00:28,427 - __main__ - INFO - Inserted 1 records into sales_data
+2026-02-09 20:00:28,428 - __main__ - INFO - Aggregating product sales data from MongoDB
+2026-02-09 20:00:28,518 - analytics_mongo - ERROR - Error generating insights: Bin edges must be unique: array([ 0., 50., 50., inf]).
+You can drop duplicate edges by setting the 'duplicates' kwarg
+2026-02-09 20:00:29,015 - __main__ - INFO - Generating sales prediction with Prophet
+2026-02-09 20:00:29,071 - gemini_service - INFO - Sending request to Gemini AI...
+2026-02-09 20:00:29,632 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Sending packet PING data None
+2026-02-09 20:00:29,634 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Received packet PONG data 
+2026-02-09 20:00:36,279 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:00:46,326 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:00:54,636 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Sending packet PING data None
+2026-02-09 20:00:54,638 - engineio.server - INFO - -18PUBi_fCJgharBAAAg: Received packet PONG data 
+2026-02-09 20:00:56,379 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:00:58,782 - gemini_service - INFO - Received Gemini response: ```json
+{
+  "ai_insights": {
+    "performance_analysis": {
+      "title": "Performance Analysis: Data Quality & Limitations",
+      "summary": "The provided sales analytics data is highly constrained ...
+2026-02-09 20:00:58,784 - gemini_service - INFO - Successfully generated Gemini business insights
+2026-02-09 20:00:58,948 - __main__ - INFO - Generating sales prediction with Prophet
+2026-02-09 20:00:58,990 - __main__ - INFO - Inserted single daily sales into DailySales collection
+2026-02-09 20:00:59,036 - __main__ - INFO - Updated historical sales from MongoDB for streaming
+2026-02-09 20:00:59,036 - __main__ - INFO - Generating product-wise report
+2026-02-09 20:00:59,045 - __main__ - INFO - Upload and analysis completed successfully
+2026-02-09 20:00:59,132 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:00:59] "POST /upload HTTP/1.1" 200 -
+2026-02-09 20:01:06,422 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:01:08,159 - __main__ - INFO - Client disconnected: TgUn16OfQ3HJkkdCAAAh
+2026-02-09 20:01:08,159 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:08] "GET /socket.io/?EIO=4&transport=websocket&sid=-18PUBi_fCJgharBAAAg HTTP/1.1" 200 -
+2026-02-09 20:01:08,544 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:08] "GET /dashboard?upload_id=a56d1192-029a-4c63-a70d-be4adc5009d1 HTTP/1.1" 200 -
+2026-02-09 20:01:09,009 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:09] "GET /api/dashboard/a56d1192-029a-4c63-a70d-be4adc5009d1 HTTP/1.1" 200 -
+2026-02-09 20:01:16,467 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:01:19,906 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:19] "GET /api/auth/upload-history HTTP/1.1" 200 -
+2026-02-09 20:01:26,512 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:01:28,525 - __main__ - INFO - Serving index page
+2026-02-09 20:01:28,526 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:28] "GET / HTTP/1.1" 200 -
+2026-02-09 20:01:28,886 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:28] "GET /api/auth/upload-history HTTP/1.1" 200 -
+2026-02-09 20:01:29,225 - engineio.server - INFO - MaD8Isxst6__7KkFAAAi: Sending packet OPEN data {'sid': 'MaD8Isxst6__7KkFAAAi', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2026-02-09 20:01:29,226 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:29] "GET /socket.io/?EIO=4&transport=polling&t=Pn2q8cE HTTP/1.1" 200 -
+2026-02-09 20:01:29,276 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:29] "GET /api/auth/current-user HTTP/1.1" 200 -
+2026-02-09 20:01:29,487 - engineio.server - INFO - MaD8Isxst6__7KkFAAAi: Received packet MESSAGE data 0
+2026-02-09 20:01:29,488 - __main__ - INFO - Client connected: 99u4Z4ooUtl1f4fXAAAj
+2026-02-09 20:01:29,490 - socketio.server - INFO - emitting event "Connected" to 99u4Z4ooUtl1f4fXAAAj [/]
+2026-02-09 20:01:29,490 - engineio.server - INFO - MaD8Isxst6__7KkFAAAi: Sending packet MESSAGE data 2["Connected",{"message":"Welcome to real-time analytics!"}]
+2026-02-09 20:01:29,490 - engineio.server - INFO - MaD8Isxst6__7KkFAAAi: Sending packet MESSAGE data 0{"sid":"99u4Z4ooUtl1f4fXAAAj"}
+2026-02-09 20:01:29,490 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:29] "POST /socket.io/?EIO=4&transport=polling&t=Pn2q8hD&sid=MaD8Isxst6__7KkFAAAi HTTP/1.1" 200 -
+2026-02-09 20:01:29,534 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:29] "GET /socket.io/?EIO=4&transport=polling&t=Pn2q8hE&sid=MaD8Isxst6__7KkFAAAi HTTP/1.1" 200 -
+2026-02-09 20:01:29,535 - engineio.server - INFO - MaD8Isxst6__7KkFAAAi: Received request to upgrade to websocket
+2026-02-09 20:01:29,541 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:29] "GET /socket.io/?EIO=4&transport=polling&t=Pn2q8m3&sid=MaD8Isxst6__7KkFAAAi HTTP/1.1" 200 -
+2026-02-09 20:01:29,546 - engineio.server - INFO - MaD8Isxst6__7KkFAAAi: Upgrade to websocket successful
+2026-02-09 20:01:35,635 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:35] "GET /api/auth/upload-history HTTP/1.1" 200 -
+2026-02-09 20:01:36,559 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:01:37,766 - __main__ - INFO - Client disconnected: 99u4Z4ooUtl1f4fXAAAj
+2026-02-09 20:01:37,767 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:37] "GET /socket.io/?EIO=4&transport=websocket&sid=MaD8Isxst6__7KkFAAAi HTTP/1.1" 200 -
+2026-02-09 20:01:37,794 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:37] "GET /dashboard?upload_id=a05c6777-df4c-40dc-8403-80f7c4689293 HTTP/1.1" 200 -
+2026-02-09 20:01:38,302 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:38] "GET /api/dashboard/a05c6777-df4c-40dc-8403-80f7c4689293 HTTP/1.1" 200 -
+2026-02-09 20:01:42,708 - __main__ - WARNING - 404 Not Found: http://localhost:5000/.well-known/appspecific/com.chrome.devtools.json
+2026-02-09 20:01:42,711 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:42] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2026-02-09 20:01:46,603 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:01:51,777 - __main__ - INFO - Serving index page
+2026-02-09 20:01:51,779 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:51] "GET / HTTP/1.1" 200 -
+2026-02-09 20:01:52,039 - __main__ - WARNING - 404 Not Found: http://localhost:5000/.well-known/appspecific/com.chrome.devtools.json
+2026-02-09 20:01:52,040 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:52] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2026-02-09 20:01:52,982 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Sending packet OPEN data {'sid': 'VZyw1PgE4EUPKNZoAAAk', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2026-02-09 20:01:53,017 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:53] "GET /socket.io/?EIO=4&transport=polling&t=Pn2qEU5 HTTP/1.1" 200 -
+2026-02-09 20:01:53,330 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:53] "GET /api/auth/current-user HTTP/1.1" 200 -
+2026-02-09 20:01:53,355 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Received request to upgrade to websocket
+2026-02-09 20:01:53,357 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Received packet MESSAGE data 0
+2026-02-09 20:01:53,371 - __main__ - INFO - Client connected: 5Gb3rQahFweDh5EmAAAl
+2026-02-09 20:01:53,379 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:53] "GET /socket.io/?EIO=4&transport=polling&t=Pn2qEVA&sid=VZyw1PgE4EUPKNZoAAAk HTTP/1.1" 200 -
+2026-02-09 20:01:53,381 - socketio.server - INFO - emitting event "Connected" to 5Gb3rQahFweDh5EmAAAl [/]
+2026-02-09 20:01:53,383 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Sending packet MESSAGE data 2["Connected",{"message":"Welcome to real-time analytics!"}]
+2026-02-09 20:01:53,394 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Sending packet MESSAGE data 0{"sid":"5Gb3rQahFweDh5EmAAAl"}
+2026-02-09 20:01:53,396 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:01:53] "POST /socket.io/?EIO=4&transport=polling&t=Pn2qEV8&sid=VZyw1PgE4EUPKNZoAAAk HTTP/1.1" 200 -
+2026-02-09 20:01:53,418 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Upgrade to websocket successful
+2026-02-09 20:01:56,650 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:02:06,694 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:02:16,739 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:02:18,017 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Sending packet PING data None
+2026-02-09 20:02:18,018 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Received packet PONG data 
+2026-02-09 20:02:26,786 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:02:36,827 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:02:43,020 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Sending packet PING data None
+2026-02-09 20:02:43,021 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Received packet PONG data 
+2026-02-09 20:02:46,872 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:02:56,926 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:03:06,971 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:03:08,023 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Sending packet PING data None
+2026-02-09 20:03:08,024 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Received packet PONG data 
+2026-02-09 20:03:17,011 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:03:27,058 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:03:33,026 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Sending packet PING data None
+2026-02-09 20:03:33,027 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Received packet PONG data 
+2026-02-09 20:03:37,101 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:03:47,147 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:03:57,190 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:03:58,029 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Sending packet PING data None
+2026-02-09 20:03:58,031 - engineio.server - INFO - VZyw1PgE4EUPKNZoAAAk: Received packet PONG data 
+2026-02-09 20:03:59,389 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:03:59] "GET /api/auth/upload-history HTTP/1.1" 200 -
+2026-02-09 20:04:01,252 - __main__ - INFO - Client disconnected: 5Gb3rQahFweDh5EmAAAl
+2026-02-09 20:04:01,252 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:04:01] "GET /socket.io/?EIO=4&transport=websocket&sid=VZyw1PgE4EUPKNZoAAAk HTTP/1.1" 200 -
+2026-02-09 20:04:01,596 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:04:01] "GET /dashboard?upload_id=a56d1192-029a-4c63-a70d-be4adc5009d1 HTTP/1.1" 200 -
+2026-02-09 20:04:01,855 - __main__ - WARNING - 404 Not Found: http://localhost:5000/.well-known/appspecific/com.chrome.devtools.json
+2026-02-09 20:04:01,865 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:04:01] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2026-02-09 20:04:02,682 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:04:02] "GET /api/dashboard/a56d1192-029a-4c63-a70d-be4adc5009d1 HTTP/1.1" 200 -
+2026-02-09 20:04:07,234 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:04:17,277 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:04:27,319 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:04:35,339 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:04:35] "GET /dashboard?upload_id=a56d1192-029a-4c63-a70d-be4adc5009d1 HTTP/1.1" 200 -
+2026-02-09 20:04:35,786 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:04:35] "GET /api/dashboard/a56d1192-029a-4c63-a70d-be4adc5009d1 HTTP/1.1" 200 -
+2026-02-09 20:04:37,364 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:04:47,407 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:04:57,460 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:05:07,504 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:05:17,550 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:05:27,592 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:05:37,638 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:05:47,679 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:05:57,722 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:05:58,776 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:05:58] "GET /dashboard?upload_id=a56d1192-029a-4c63-a70d-be4adc5009d1 HTTP/1.1" 200 -
+2026-02-09 20:05:59,183 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:05:59] "GET /api/dashboard/a56d1192-029a-4c63-a70d-be4adc5009d1 HTTP/1.1" 200 -
+2026-02-09 20:05:59,459 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:05:59] "GET /api/auth/current-user HTTP/1.1" 200 -
+2026-02-09 20:06:06,907 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:06:06] "GET /api/auth/upload-history HTTP/1.1" 200 -
+2026-02-09 20:06:07,768 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+2026-02-09 20:06:08,799 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:06:08] "GET /dashboard?upload_id=daeb2a2a-e772-4866-884e-e8f4d9170aa1 HTTP/1.1" 200 -
+2026-02-09 20:06:09,357 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:06:09] "GET /api/dashboard/daeb2a2a-e772-4866-884e-e8f4d9170aa1 HTTP/1.1" 200 -
+2026-02-09 20:06:11,753 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 20:06:11] "GET /api/auth/current-user HTTP/1.1" 200 -
+2026-02-09 20:06:17,806 - __main__ - ERROR - Error in background thread simulation: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
