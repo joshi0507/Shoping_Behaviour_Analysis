@@ -441,6 +441,41 @@ def background_thread():
         logger.error(f'Fatal error in background thread: {str(e)}')
         traceback.print_exc()
 
+@app.route('/dashboard')
+def dashboard():
+    """Render dashboard page"""
+    return render_template('dashboard.html')
+
+@app.route('/api/dashboard/<upload_id>')
+def get_dashboard_data(upload_id):
+    """Get dashboard data for specific upload session"""
+    try:
+        # Get user from session
+        user_id = session.get('user_id')
+        if not user_id:
+            return jsonify({'error': 'Unauthorized'}), 401
+        
+        # Find upload session
+        upload_session = db.upload_sessions.find_one({
+            'upload_id': upload_id,
+            'user_id': user_id
+        })
+        
+        if not upload_session:
+            return jsonify({'error': 'Upload session not found'}), 404
+        
+        # Check if session is completed
+        if upload_session.get('status') != 'completed':
+            return jsonify({'error': 'Upload session not completed yet'}), 400
+        
+        # Return stored results
+        results = upload_session.get('results', {})
+        return jsonify(results)
+        
+    except Exception as e:
+        logger.error(f"Error fetching dashboard data: {str(e)}")
+        return jsonify({'error': 'Failed to fetch dashboard data'}), 500
+
 @app.route('/upload', methods=['POST'])
 @login_required
 def upload():

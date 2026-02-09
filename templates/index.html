@@ -485,6 +485,30 @@
             opacity: 0.9;
             font-size: 0.9rem;
         }
+        
+        /* Fix modal backdrop issues */
+        .modal-backdrop {
+            z-index: 1040 !important;
+        }
+        
+        .modal {
+            z-index: 1050 !important;
+        }
+        
+        .modal.show {
+            z-index: 1055 !important;
+        }
+        
+        /* Ensure modal content is clickable */
+        .modal-content {
+            position: relative;
+            z-index: 1060 !important;
+        }
+        
+        /* Fix table hover in modal */
+        .table-hover tbody tr:hover {
+            background-color: rgba(0,0,0,.075);
+        }
     </style>
 </head>
 <body>
@@ -666,74 +690,12 @@
             <!-- Key Metrics -->
             <div id="keyMetrics" class="row mb-4"></div>
 
-            <!-- Tabs -->
-            <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="charts-tab" data-bs-toggle="tab" data-bs-target="#charts" type="button" role="tab">
-                        <i class="bi bi-bar-chart"></i> Charts
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="insights-tab" data-bs-toggle="tab" data-bs-target="#insights" type="button" role="tab">
-                        <i class="bi bi-lightbulb"></i> Business Insights
-                        <span class="ai-badge">AI</span>
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="actions-tab" data-bs-toggle="tab" data-bs-target="#actions" type="button" role="tab">
-                        <i class="bi bi-check2-square"></i> Action Items
-                    </button>
-                </li>
-            </ul>
-
-            <div class="tab-content" id="dashboardTabsContent">
-                <!-- Charts Tab -->
-                <div class="tab-pane fade show active" id="charts" role="tabpanel">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="chart-container fade-in">
-                                <div id="mostSellingChart"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="chart-container fade-in">
-                                <div id="lowSellingChart"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="chart-container fade-in">
-                                <div id="highCostChart"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="chart-container fade-in">
-                                <div id="lowCostChart"></div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="chart-container fade-in">
-                                <div id="predictionChart"></div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="chart-container fade-in">
-                                <div id="reportChart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Insights Tab -->
-                <div class="tab-pane fade" id="insights" role="tabpanel">
-                    <div id="insightsContent"></div>
-                </div>
-
-                <!-- Actions Tab -->
-                <div class="tab-pane fade" id="actions" role="tabpanel">
-                    <div id="actionsContent"></div>
-                </div>
+            <!-- Upload Success Message -->
+            <div id="uploadSuccess" class="alert alert-success" style="display: none;">
+                <h5><i class="bi bi-check-circle me-2"></i>Upload Successful!</h5>
+                <p>Your data has been processed and analytics are ready.</p>
+                <p><a href="#" onclick="viewDashboard()" class="btn btn-primary">View Analytics Dashboard</a></p>
             </div>
-        </div>
     </div>
 
     <!-- Scripts -->
@@ -1064,79 +1026,24 @@
         }
 
         function displayResults(data) {
-            // Display charts
-            if (data.most_selling && window.Plotly) {
-                try {
-                    Plotly.newPlot('mostSellingChart', JSON.parse(data.most_selling.graph));
-                    document.querySelector('#mostSellingChart').parentElement.querySelector('.chart-note')?.remove();
-                    const note = document.createElement('p');
-                    note.className = 'text-muted mt-2 chart-note';
-                    note.textContent = data.most_selling.note;
-                    document.querySelector('#mostSellingChart').parentElement.appendChild(note);
-                } catch (error) {
-                    console.error('Error rendering most selling chart:', error);
-                }
-            }
+            // Store upload ID for dashboard navigation
+            window.currentUploadId = data.upload_id;
             
-            if (data.low_selling && window.Plotly) {
-                try {
-                    Plotly.newPlot('lowSellingChart', JSON.parse(data.low_selling.graph));
-                    document.querySelector('#lowSellingChart').parentElement.querySelector('.chart-note')?.remove();
-                    const note = document.createElement('p');
-                    note.className = 'text-muted mt-2 chart-note';
-                    note.textContent = data.low_selling.note;
-                    document.querySelector('#lowSellingChart').parentElement.appendChild(note);
-                } catch (error) {
-                    console.error('Error rendering low selling chart:', error);
-                }
-            }
+            // Show success message
+            document.getElementById('uploadSuccess').style.display = 'block';
+            document.getElementById('resultsSection').style.display = 'block';
             
-            if (data.high_cost_high_sales) {
-                Plotly.newPlot('highCostChart', JSON.parse(data.high_cost_high_sales.graph));
-                document.querySelector('#highCostChart').parentElement.querySelector('.chart-note')?.remove();
-                const note = document.createElement('p');
-                note.className = 'text-muted mt-2 chart-note';
-                note.textContent = data.high_cost_high_sales.note;
-                document.querySelector('#highCostChart').parentElement.appendChild(note);
-            }
+            // Hide loading
+            document.getElementById('loadingSection').style.display = 'none';
             
-            if (data.low_cost_high_sales) {
-                Plotly.newPlot('lowCostChart', JSON.parse(data.low_cost_high_sales.graph));
-                document.querySelector('#lowCostChart').parentElement.querySelector('.chart-note')?.remove();
-                const note = document.createElement('p');
-                note.className = 'text-muted mt-2 chart-note';
-                note.textContent = data.low_cost_high_sales.note;
-                document.querySelector('#lowCostChart').parentElement.appendChild(note);
-            }
-            
-            if (data.sales_prediction) {
-                Plotly.newPlot('predictionChart', JSON.parse(data.sales_prediction.graph));
-                document.querySelector('#predictionChart').parentElement.querySelector('.chart-note')?.remove();
-                const note = document.createElement('p');
-                note.className = 'text-muted mt-2 chart-note';
-                note.textContent = data.sales_prediction.note;
-                document.querySelector('#predictionChart').parentElement.appendChild(note);
-            }
-            
-            if (data.product_report) {
-                Plotly.newPlot('reportChart', JSON.parse(data.product_report.graph));
-                document.querySelector('#reportChart').parentElement.querySelector('.chart-note')?.remove();
-                const note = document.createElement('p');
-                note.className = 'text-muted mt-2 chart-note';
-                note.textContent = data.product_report.note;
-                document.querySelector('#reportChart').parentElement.appendChild(note);
-            }
-            
-            // Display insights
-            if (data.insights) {
-                displayInsights(data.insights);
-                displayActions(data.insights);
-                displayKeyMetrics(data.insights);
-            }
-            
-            // Display AI-powered business insights
-            if (data.ai_insights) {
-                displayAIInsights(data.ai_insights);
+            showNotification('Upload successful! Analytics ready for viewing.', 'success');
+        }
+
+        function viewDashboard() {
+            if (window.currentUploadId) {
+                window.location.href = `/dashboard?upload_id=${window.currentUploadId}`;
+            } else {
+                showNotification('No upload session available', 'error');
             }
         }
 
@@ -1614,7 +1521,7 @@
                     <h5 class="modal-title">
                         <i class="fas fa-history me-2"></i>Upload History
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" onclick="closeUploadHistoryModal()"></button>
                 </div>
                 <div class="modal-body">
                     <div id="uploadHistoryContent">
@@ -1692,8 +1599,19 @@
         }
 
         async function showUploadHistory() {
-            const modal = new bootstrap.Modal(document.getElementById('uploadHistoryModal'));
+            // Remove any existing backdrops and modal-open classes
+            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+            
+            const modalElement = document.getElementById('uploadHistoryModal');
             const content = document.getElementById('uploadHistoryContent');
+            
+            // Reset modal state
+            modalElement.classList.remove('show', 'fade');
+            modalElement.style.display = 'none';
+            modalElement.style.visibility = 'hidden';
             
             content.innerHTML = `
                 <div class="text-center">
@@ -1703,7 +1621,11 @@
                 </div>
             `;
             
-            modal.show();
+            // Show modal without backdrop
+            modalElement.style.display = 'block';
+            modalElement.style.visibility = 'visible';
+            modalElement.classList.add('show');
+            document.body.classList.add('modal-open');
             
             try {
                 const response = await fetch('/api/auth/upload-history');
@@ -1798,6 +1720,16 @@
             return date.toLocaleString();
         }
 
+        function closeUploadHistoryModal() {
+            const modalElement = document.getElementById('uploadHistoryModal');
+            modalElement.classList.remove('show');
+            modalElement.style.display = 'none';
+            modalElement.style.visibility = 'hidden';
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+        }
+
         function getStatusColor(status) {
             switch (status) {
                 case 'completed': return 'success';
@@ -1808,111 +1740,13 @@
         }
 
         async function viewUploadDetails(uploadId) {
-            const modal = new bootstrap.Modal(document.getElementById('uploadDetailsModal'));
-            const content = document.getElementById('uploadDetailsContent');
-            
-            content.innerHTML = `
-                <div class="text-center">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-            `;
-            
-            modal.show();
-            
-            try {
-                const response = await fetch(`/api/auth/upload-details/${uploadId}`);
-                const data = await response.json();
-                
-                if (data.success) {
-                    displayUploadDetails(data.upload);
-                } else {
-                    content.innerHTML = `
-                        <div class="alert alert-danger">
-                            <i class="fas fa-exclamation-triangle me-2"></i>
-                            Failed to load upload details: ${data.error}
-                        </div>
-                    `;
-                }
-            } catch (error) {
-                console.error('Upload details error:', error);
-                content.innerHTML = `
-                    <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        Network error loading upload details
-                    </div>
-                `;
-            }
+            // Navigate to the dashboard with the upload ID
+            window.location.href = `/dashboard?upload_id=${uploadId}`;
         }
 
-        function displayUploadDetails(upload) {
-            const content = document.getElementById('uploadDetailsContent');
-            const results = upload.results;
-            
-            if (!results) {
-                content.innerHTML = `
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        No analysis results available for this upload
-                    </div>
-                `;
-                return;
-            }
-            
-            // Display the same graphs and insights as the main dashboard
-            content.innerHTML = `
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h6><i class="fas fa-chart-bar me-2"></i>Most Selling Products</h6>
-                            </div>
-                            <div class="card-body">
-                                <div id="detailsMostSelling"></div>
-                                <p class="mt-2"><small>${results.most_selling.note}</small></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h6><i class="fas fa-chart-line me-2"></i>Sales Prediction</h6>
-                            </div>
-                            <div class="card-body">
-                                <div id="detailsSalesPrediction"></div>
-                                <p class="mt-2"><small>${results.sales_prediction.note}</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h6><i class="fas fa-lightbulb me-2"></i>Business Insights</h6>
-                            </div>
-                            <div class="card-body">
-                                <div id="detailsInsights"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // Render the graphs
-            if (results.most_selling.graph) {
-                Plotly.newPlot('detailsMostSelling', JSON.parse(results.most_selling.graph));
-            }
-            if (results.sales_prediction.graph) {
-                Plotly.newPlot('detailsSalesPrediction', JSON.parse(results.sales_prediction.graph));
-            }
-            
-            // Display insights
-            if (results.insights) {
-                displayInsights(results.insights, 'detailsInsights');
-            }
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString();
         }
 
         // Check authentication status on page load
