@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# app_mongo.py - MongoDB version of ProAnz Analytics
+# app.py - MongoDB version of ProAnz Analytics
 from flask import Flask, request, jsonify, render_template, session, redirect, url_for
 import pandas as pd
 import plotly.express as px
