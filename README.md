@@ -1,4 +1,31 @@
-# ProAnz Analytics - MongoDB Version
+# ProAnz Analytics – Shopping Behaviour Analysis
+
+**A modern, real-time sales analytics dashboard with forecasting and AI-powered business recommendations**
+
+
+*Analysis Dashboard*
+
+Register page
+<img width="430" height="598" alt="image" src="https://github.com/user-attachments/assets/04725493-4514-4da0-bd59-6403122705c9" />
+
+Login page
+<img width="679" height="586" alt="image" src="https://github.com/user-attachments/assets/2391563d-e5b1-4930-9cd3-e8523dcdce43" />
+
+Charts
+<img width="476" height="450" alt="newplot" src="https://github.com/user-attachments/assets/9576cfd3-8699-49ab-9103-c17ede5dbe6a" />
+
+<img width="476" height="450" alt="newplot (1)" src="https://github.com/user-attachments/assets/d87ea4e3-90cb-4886-973e-d6e08ae1c476" />
+
+<img width="1072" height="589" alt="image" src="https://github.com/user-attachments/assets/694d9015-fab5-4c46-9978-1ab1ffaa8ba8" />
+
+Business Insights By *AI*
+<img width="1049" height="584" alt="image" src="https://github.com/user-attachments/assets/ebc22a85-8751-4015-a562-845c9cbf6a3d" />
+
+<img width="1069" height="566" alt="image" src="https://github.com/user-attachments/assets/9ee5b516-1e53-4443-88d4-c3f31f4d8630" />
+
+<img width="1049" height="596" alt="image" src="https://github.com/user-attachments/assets/4ffa6c9a-f77a-430e-af30-e2573500bf7f" />
+
+<img width="1053" height="587" alt="image" src="https://github.com/user-attachments/assets/2ca3e4f0-d19c-45f4-bde8-9f568db63682" />
 
 A comprehensive sales and product analytics dashboard powered by MongoDB, featuring real-time data streaming, advanced business insights, and predictive analytics.
 
@@ -79,14 +106,23 @@ The application will be available at `http://127.0.0.1:5000`
 ## File Structure
 
 ```
-ProAnz-app/
-├── app_mongo.py              # Main Flask application with MongoDB
-├── analytics_mongo.py        # Business intelligence and insights module
-├── requirements_mongo.txt    # Python dependencies
-├── templates/
-│   └── index_mongo.html     # Enhanced web interface
-├── .env                     # Environment variables
-└── README_MONGO.md          # This file
+Shoping_Behaviour_Analysis/
+├── templates/                 # Frontend HTML templates
+│   ├── index.html             # Main Dashboard UI (Charts & Upload)
+│   ├── auth.html              # Login & Registration Page
+│   └── dashboard.html         # Detailed Analytics View
+├── analytics_mongo.py         # Business logic for data processing & insights
+├── app.py                     # Main Flask application & SocketIO server
+├── config.py                  # Environment & App configuration settings
+├── gemini_service.py          # Google Gemini AI integration for business insights
+├── .env                       # Environment variables (API Keys, DB URIs)
+├── .gitignore                 # Files and folders to be ignored by Git
+├── requirements.txt           # Python dependencies (Flask, Pandas, etc.)
+├── proanz_mongo_app.log       # Application runtime logs
+├── uploads/                   # Temporary storage for uploaded CSV files
+├── DEPLOYMENT.md              # Instructions for production deployment
+├── GEMINI_SETUP.md            # Documentation for configuring Google Gemini
+└── venv/                      # Python virtual environment (hidden/ignored)
 ```
 
 ## MongoDB Schema
@@ -204,7 +240,7 @@ CMD ["gunicorn", "--worker-class", "eventlet", "-w", "1", "--bind", "0.0.0.0:500
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the BSL-I.O License - see the LICENSE file for details.
 
 ## Support
 
