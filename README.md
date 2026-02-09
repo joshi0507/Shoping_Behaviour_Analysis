@@ -6,12 +6,15 @@
 *Analysis Dashboard*
 
 Register page
-<img width="430" height="598" alt="image" src="https://github.com/user-attachments/assets/04725493-4514-4da0-bd59-6403122705c9" />
+
+<img width="220" height="300" alt="image" src="https://github.com/user-attachments/assets/04725493-4514-4da0-bd59-6403122705c9" />
 
 Login page
+
 <img width="679" height="586" alt="image" src="https://github.com/user-attachments/assets/2391563d-e5b1-4930-9cd3-e8523dcdce43" />
 
 Charts
+
 <img width="476" height="450" alt="newplot" src="https://github.com/user-attachments/assets/9576cfd3-8699-49ab-9103-c17ede5dbe6a" />
 
 <img width="476" height="450" alt="newplot (1)" src="https://github.com/user-attachments/assets/d87ea4e3-90cb-4886-973e-d6e08ae1c476" />
