@@ -24,4 +24,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Start your app using Render's $PORT
-CMD gunicorn --worker-class eventlet -w 1 -b 0.0.0.0:$PORT app:app
+CMD gunicorn --worker-class gevent -w 1 -b 0.0.0.0:$PORT app:app
