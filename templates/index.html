@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProAnz Analytics - MongoDB Powered Sales Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9)), 
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: white !important;
+            font-size: 1.5rem;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #f8f9fa !important;
+            transform: translateY(-2px);
+        }
+        .main-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        .upload-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+        }
+        .upload-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .upload-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .upload-header h2 {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .upload-header .lead {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .toggle-container {
+            margin-bottom: 30px;
+        }
+        .toggle-buttons {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 5px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .toggle-btn {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 600;
+            color: #666;
+        }
+        .toggle-btn:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        .toggle-btn i {
+            font-size: 1.2rem;
+        }
+        .upload-content {
+            margin-top: 30px;
+        }
+        .upload-method {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+        .upload-method.active {
+            display: block;
+        }
+        .method-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .method-header i {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .method-header h4 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .method-header p {
+            color: #666;
+        }
+        .file-upload-area {
+            border: 2px dashed #dee2e6;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .file-upload-area:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+        .file-upload-area.dragover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            transform: scale(1.02);
+        }
+        .upload-icon {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        .file-upload-area h5 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .file-upload-area input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .file-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: #e8f5e8;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .file-info i {
+            color: #28a745;
+        }
+        .btn-remove {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .requirements-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .requirements-box h6 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .format-example {
+            background: #e9ecef;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 10px;
+        }
+        .manual-input-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+        }
+        .input-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .input-header h6 {
+            color: #333;
+            font-weight: 600;
+            margin: 0;
+        }
+        .btn-add-row {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-add-row:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        .manual-rows {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .manual-row {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .manual-row:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .action-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #dee2e6;
+        }
+        .action-section .btn {
+            margin: 0 10px;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .action-section .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .insights-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .insights-card:hover {
+            transform: translateY(-5px);
+        }
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .chart-container:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+        .streaming-status {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1000;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .streaming-active {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+        .streaming-inactive {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+            color: white;
+        }
+        .insight-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        .action-item {
+            background: white;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .metric-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .metric-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 50px;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tab-content {
+            padding-top: 20px;
+        }
+        .nav-tabs .nav-link {
+            color: #667eea;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+        }
+        .nav-tabs .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-line me-2"></i>ProAnz Analytics
+            </a>
+            <div class="navbar-nav ms-auto">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle me-1"></i>
+                        <span id="currentUsername">User</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#" onclick="showUploadHistory()">
+                            <i class="fas fa-history me-2"></i>Upload History
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" onclick="logout()">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Streaming Status -->
+    <!-- <div id="streamingStatus" class="streaming-status streaming-inactive">
+        <i class="bi bi-circle-fill"></i> Real-time: Inactive
+    </div> -->
+
+    <!-- Main Container -->
+    <div class="container main-container">
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="upload-card">
+                        <div class="upload-header">
+                            <h2 class="mb-3"><i class="bi bi-cloud-upload"></i> Data Upload Center</h2>
+                            <p class="lead">Choose your preferred method to import sales data for comprehensive analytics</p>
+                        </div>
+                        
+                        <!-- Toggle Buttons -->
+                        <div class="toggle-container">
+                            <div class="toggle-buttons">
+                                <button type="button" class="toggle-btn active" id="csvToggle" onclick="toggleUploadMethod('csv')">
+                                    <i class="bi bi-file-earmark-spreadsheet"></i>
+                                    <span>CSV Upload</span>
+                                </button>
+                                <button type="button" class="toggle-btn" id="manualToggle" onclick="toggleUploadMethod('manual')">
+                                    <i class="bi bi-pencil-square"></i>
+                                    <span>Manual Entry</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="upload-content">
+                            <!-- CSV Upload Section -->
+                            <div id="csvSection" class="upload-method active">
+                                <div class="method-header">
+                                    <i class="bi bi-upload"></i>
+                                    <h4>Upload CSV File</h4>
+                                    <p class="text-muted">Upload a CSV file with your sales data</p>
+                                </div>
+                                
+                                <form id="uploadForm" enctype="multipart/form-data">
+                                    <div class="file-upload-area" id="fileUploadArea">
+                                        <div class="upload-icon">
+                                            <i class="bi bi-cloud-arrow-up"></i>
+                                        </div>
+                                        <h5>Drop your CSV file here or click to browse</h5>
+                                        <p class="text-muted">Maximum file size: 10MB</p>
+                                        <input type="file" class="form-control" id="csvFile" accept=".csv" required>
+                                        <div class="file-info" id="fileInfo" style="display: none;">
+                                            <i class="bi bi-file-earmark-text"></i>
+                                            <span id="fileName"></span>
+                                            <button type="button" class="btn-remove" onclick="removeFile()">
+                                                <i class="bi bi-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="requirements-box">
+                                        <h6><i class="bi bi-info-circle"></i> Required CSV Format</h6>
+                                        <div class="format-example">
+                                            <code>product_name, date, units_sold, price</code>
+                                        </div>
+                                        <small class="text-muted">Example: iPhone 15, 2024-01-15, 150, 999.99</small>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <!-- Manual Entry Section -->
+                            <div id="manualSection" class="upload-method">
+                                <div class="method-header">
+                                    <i class="bi bi-keyboard"></i>
+                                    <h4>Manual Data Entry</h4>
+                                    <p class="text-muted">Enter sales data manually for multiple products</p>
+                                </div>
+                                
+                                <form id="manualForm">
+                                    <div class="manual-input-container">
+                                        <div class="input-header">
+                                            <h6>Product Details</h6>
+                                            <button type="button" class="btn-add-row" onclick="addManualRow()">
+                                                <i class="bi bi-plus-circle"></i> Add Product
+                                            </button>
+                                        </div>
+                                        
+                                        <div id="manualRows" class="manual-rows">
+                                            <div class="manual-row">
+                                                <div class="row g-3">
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">Product Name</label>
+                                                        <input type="text" class="form-control" name="product_name[]" placeholder="e.g., iPhone 15" required>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label class="form-label">Date</label>
+                                                        <input type="date" class="form-control" name="date[]" required>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label class="form-label">Units Sold</label>
+                                                        <input type="number" class="form-control" name="units_sold[]" placeholder="0" min="0" step="1" required>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label class="form-label">Price ($)</label>
+                                                        <input type="number" class="form-control" name="price[]" placeholder="0.00" min="0" step="0.01" required>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">Actions</label>
+                                                        <div class="action-buttons">
+                                                            <button type="button" class="btn btn-outline-primary btn-sm" onclick="duplicateRow(this)">
+                                                                <i class="bi bi-files"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeRow(this)" style="display: none;">
+                                                                <i class="bi bi-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="action-section">
+                            <button type="button" class="btn btn-gradient btn-lg" onclick="analyzeData()">
+                                <i class="bi bi-play-circle"></i> Analyze Data
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary btn-lg" onclick="startStreaming()">
+                                <i class="bi bi-broadcast"></i> Start Real-time
+                            </button>
+                            <button type="button" class="btn btn-outline-danger btn-lg" onclick="resetForm()">
+                                <i class="bi bi-arrow-clockwise"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="loading-spinner">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3">Analyzing your data and generating insights...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" style="display: none;">
+            <!-- Key Metrics -->
+            <div id="keyMetrics" class="row mb-4"></div>
+
+            <!-- Tabs -->
+            <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="charts-tab" data-bs-toggle="tab" data-bs-target="#charts" type="button" role="tab">
+                        <i class="bi bi-bar-chart"></i> Charts
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="insights-tab" data-bs-toggle="tab" data-bs-target="#insights" type="button" role="tab">
+                        <i class="bi bi-lightbulb"></i> Business Insights
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="actions-tab" data-bs-toggle="tab" data-bs-target="#actions" type="button" role="tab">
+                        <i class="bi bi-check2-square"></i> Action Items
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="dashboardTabsContent">
+                <!-- Charts Tab -->
+                <div class="tab-pane fade show active" id="charts" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="chart-container fade-in">
+                                <div id="mostSellingChart"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="chart-container fade-in">
+                                <div id="lowSellingChart"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="chart-container fade-in">
+                                <div id="highCostChart"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="chart-container fade-in">
+                                <div id="lowCostChart"></div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="chart-container fade-in">
+                                <div id="predictionChart"></div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="chart-container fade-in">
+                                <div id="reportChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insights Tab -->
+                <div class="tab-pane fade" id="insights" role="tabpanel">
+                    <div id="insightsContent"></div>
+                </div>
+
+                <!-- Actions Tab -->
+                <div class="tab-pane fade" id="actions" role="tabpanel">
+                    <div id="actionsContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        // Socket.IO connection
+        let socket;
+        try {
+            socket = io();
+        } catch (error) {
+            console.error('Socket.IO initialization failed:', error);
+        }
+        
+        socket.on('connect', function() {
+            console.log('Connected to server');
+        });
+        
+        socket.on('streaming_started', function(data) {
+            updateStreamingStatus(true);
+            showNotification('Real-time streaming started!', 'success');
+        });
+        
+        socket.on('new_sales_data', function(data) {
+            console.log('New sales data:', data);
+            // Update real-time chart if exists
+        });
+        
+        socket.on('streaming_error', function(data) {
+            updateStreamingStatus(false);
+            showNotification('Streaming error: ' + data.error, 'error');
+        });
+
+        function updateStreamingStatus(isActive) {
+            const statusEl = document.getElementById('streamingStatus');
+            if (isActive) {
+                statusEl.className = 'streaming-status streaming-active';
+                statusEl.innerHTML = '<i class="bi bi-circle-fill"></i> Real-time: Active';
+            } else {
+                statusEl.className = 'streaming-status streaming-inactive';
+                statusEl.innerHTML = '<i class="bi bi-circle-fill"></i> Real-time: Inactive';
+            }
+        }
+
+        function startStreaming() {
+            socket.emit('start_streaming');
+        }
+
+        function showNotification(message, type) {
+            const alertClass = type === 'error' ? 'alert-danger' : 'alert-success';
+            const notification = `
+                <div class="alert ${alertClass} alert-dismissible fade show position-fixed" style="top: 20px; right: 20px; z-index: 9999;">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', notification);
+        }
+
+        // Toggle upload methods
+        function toggleUploadMethod(method) {
+            const csvSection = document.getElementById('csvSection');
+            const manualSection = document.getElementById('manualSection');
+            const csvToggle = document.getElementById('csvToggle');
+            const manualToggle = document.getElementById('manualToggle');
+            
+            if (method === 'csv') {
+                csvSection.classList.add('active');
+                manualSection.classList.remove('active');
+                csvToggle.classList.add('active');
+                manualToggle.classList.remove('active');
+            } else {
+                csvSection.classList.remove('active');
+                manualSection.classList.add('active');
+                csvToggle.classList.remove('active');
+                manualToggle.classList.add('active');
+            }
+        }
+
+        // File upload handling
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const csvFile = document.getElementById('csvFile');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+
+        // Drag and drop
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.add('dragover');
+        });
+
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.classList.remove('dragover');
+        });
+
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type === 'text/csv') {
+                csvFile.files = files;
+                showFileInfo(files[0].name);
+            }
+        });
+
+        csvFile.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                showFileInfo(e.target.files[0].name);
+            }
+        });
+
+        function showFileInfo(name) {
+            fileName.textContent = name;
+            fileInfo.style.display = 'flex';
+            fileUploadArea.style.display = 'none';
+        }
+
+        function removeFile() {
+            csvFile.value = '';
+            fileInfo.style.display = 'none';
+            fileUploadArea.style.display = 'block';
+        }
+
+        // Manual row management
+        let manualRowCount = 1;
+
+        function addManualRow() {
+            manualRowCount++;
+            const newRow = document.createElement('div');
+            newRow.className = 'manual-row';
+            newRow.innerHTML = `
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Product Name</label>
+                        <input type="text" class="form-control" name="product_name[]" placeholder="e.g., iPhone 15" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" name="date[]" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Units Sold</label>
+                        <input type="number" class="form-control" name="units_sold[]" placeholder="0" min="0" step="1" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Price ($)</label>
+                        <input type="number" class="form-control" name="price[]" placeholder="0.00" min="0" step="0.01" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Actions</label>
+                        <div class="action-buttons">
+                            <button type="button" class="btn btn-outline-primary btn-sm" onclick="duplicateRow(this)">
+                                <i class="bi bi-files"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeRow(this)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('manualRows').appendChild(newRow);
+        }
+
+        function removeRow(button) {
+            const row = button.closest('.manual-row');
+            row.remove();
+            updateRemoveButtons();
+        }
+
+        function duplicateRow(button) {
+            const row = button.closest('.manual-row');
+            const inputs = row.querySelectorAll('input');
+            const newRow = row.cloneNode(true);
+            
+            // Clear input values in the new row
+            newRow.querySelectorAll('input').forEach(input => {
+                input.value = '';
+            });
+            
+            // Re-attach event listeners
+            newRow.querySelectorAll('.btn-outline-danger').forEach(btn => {
+                btn.style.display = 'inline-block';
+            });
+            
+            document.getElementById('manualRows').appendChild(newRow);
+            updateRemoveButtons();
+        }
+
+        function updateRemoveButtons() {
+            const rows = document.querySelectorAll('.manual-row');
+            rows.forEach((row, index) => {
+                const removeBtn = row.querySelector('.btn-outline-danger');
+                if (removeBtn) {
+                    removeBtn.style.display = rows.length > 1 ? 'inline-block' : 'none';
+                }
+            });
+        }
+
+        function resetForm() {
+            document.getElementById('uploadForm').reset();
+            document.getElementById('manualForm').reset();
+            removeFile();
+            
+            // Reset to first manual row
+            const manualRows = document.getElementById('manualRows');
+            manualRows.innerHTML = `
+                <div class="manual-row">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label">Product Name</label>
+                            <input type="text" class="form-control" name="product_name[]" placeholder="e.g., iPhone 15" required>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-control" name="date[]" required>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Units Sold</label>
+                            <input type="number" class="form-control" name="units_sold[]" placeholder="0" min="0" step="1" required>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Price ($)</label>
+                            <input type="number" class="form-control" name="price[]" placeholder="0.00" min="0" step="0.01" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Actions</label>
+                            <div class="action-buttons">
+                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="duplicateRow(this)">
+                                    <i class="bi bi-files"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeRow(this)" style="display: none;">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Reset to CSV upload
+            toggleUploadMethod('csv');
+        }
+
+        function analyzeData() {
+            const activeMethod = document.querySelector('.upload-method.active');
+            
+            if (activeMethod.id === 'csvSection') {
+                // Handle CSV upload
+                const fileInput = document.getElementById('csvFile');
+                if (!fileInput.files.length) {
+                    showNotification('Please select a CSV file to upload', 'error');
+                    return;
+                }
+                
+                const formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+                
+                submitData(formData);
+            } else {
+                // Handle manual input
+                const manualForm = document.getElementById('manualForm');
+                const formData = new FormData();
+                
+                const productNames = manualForm.querySelectorAll('input[name="product_name[]"]');
+                const dates = manualForm.querySelectorAll('input[name="date[]"]');
+                const units = manualForm.querySelectorAll('input[name="units_sold[]"]');
+                const prices = manualForm.querySelectorAll('input[name="price[]"]');
+                
+                let hasValidData = false;
+                
+                productNames.forEach((input, index) => {
+                    if (input.value.trim()) {
+                        formData.append('product_name[]', input.value);
+                        formData.append('date[]', dates[index].value);
+                        formData.append('units_sold[]', units[index].value);
+                        formData.append('price[]', prices[index].value);
+                        hasValidData = true;
+                    }
+                });
+                
+                if (!hasValidData) {
+                    showNotification('Please fill in at least one product row', 'error');
+                    return;
+                }
+                
+                submitData(formData);
+            }
+        }
+
+        function submitData(formData) {
+            // Show loading
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('resultsSection').style.display = 'none';
+            
+            // Submit data
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.status === 401) {
+                    // Authentication required
+                    window.location.href = '/auth';
+                    return;
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('loadingSpinner').style.display = 'none';
+                
+                if (data.error) {
+                    showNotification('Error: ' + data.error, 'error');
+                    return;
+                }
+                
+                displayResults(data);
+                document.getElementById('resultsSection').style.display = 'block';
+                showNotification('Analysis completed successfully!', 'success');
+            })
+            .catch(error => {
+                document.getElementById('loadingSpinner').style.display = 'none';
+                showNotification('Error: ' + error.message, 'error');
+            });
+        }
+
+        function displayResults(data) {
+            // Display charts
+            if (data.most_selling && window.Plotly) {
+                try {
+                    Plotly.newPlot('mostSellingChart', JSON.parse(data.most_selling.graph));
+                    document.querySelector('#mostSellingChart').parentElement.querySelector('.chart-note')?.remove();
+                    const note = document.createElement('p');
+                    note.className = 'text-muted mt-2 chart-note';
+                    note.textContent = data.most_selling.note;
+                    document.querySelector('#mostSellingChart').parentElement.appendChild(note);
+                } catch (error) {
+                    console.error('Error rendering most selling chart:', error);
+                }
+            }
+            
+            if (data.low_selling && window.Plotly) {
+                try {
+                    Plotly.newPlot('lowSellingChart', JSON.parse(data.low_selling.graph));
+                    document.querySelector('#lowSellingChart').parentElement.querySelector('.chart-note')?.remove();
+                    const note = document.createElement('p');
+                    note.className = 'text-muted mt-2 chart-note';
+                    note.textContent = data.low_selling.note;
+                    document.querySelector('#lowSellingChart').parentElement.appendChild(note);
+                } catch (error) {
+                    console.error('Error rendering low selling chart:', error);
+                }
+            }
+            
+            if (data.high_cost_high_sales) {
+                Plotly.newPlot('highCostChart', JSON.parse(data.high_cost_high_sales.graph));
+                document.querySelector('#highCostChart').parentElement.querySelector('.chart-note')?.remove();
+                const note = document.createElement('p');
+                note.className = 'text-muted mt-2 chart-note';
+                note.textContent = data.high_cost_high_sales.note;
+                document.querySelector('#highCostChart').parentElement.appendChild(note);
+            }
+            
+            if (data.low_cost_high_sales) {
+                Plotly.newPlot('lowCostChart', JSON.parse(data.low_cost_high_sales.graph));
+                document.querySelector('#lowCostChart').parentElement.querySelector('.chart-note')?.remove();
+                const note = document.createElement('p');
+                note.className = 'text-muted mt-2 chart-note';
+                note.textContent = data.low_cost_high_sales.note;
+                document.querySelector('#lowCostChart').parentElement.appendChild(note);
+            }
+            
+            if (data.sales_prediction) {
+                Plotly.newPlot('predictionChart', JSON.parse(data.sales_prediction.graph));
+                document.querySelector('#predictionChart').parentElement.querySelector('.chart-note')?.remove();
+                const note = document.createElement('p');
+                note.className = 'text-muted mt-2 chart-note';
+                note.textContent = data.sales_prediction.note;
+                document.querySelector('#predictionChart').parentElement.appendChild(note);
+            }
+            
+            if (data.product_report) {
+                Plotly.newPlot('reportChart', JSON.parse(data.product_report.graph));
+                document.querySelector('#reportChart').parentElement.querySelector('.chart-note')?.remove();
+                const note = document.createElement('p');
+                note.className = 'text-muted mt-2 chart-note';
+                note.textContent = data.product_report.note;
+                document.querySelector('#reportChart').parentElement.appendChild(note);
+            }
+            
+            // Display insights
+            if (data.insights) {
+                displayInsights(data.insights);
+                displayActions(data.insights);
+                displayKeyMetrics(data.insights);
+            }
+        }
+
+        function displayKeyMetrics(insights) {
+            const metricsContainer = document.getElementById('keyMetrics');
+            metricsContainer.innerHTML = '';
+            
+            if (insights.executive_summary && insights.executive_summary.key_metrics) {
+                insights.executive_summary.key_metrics.forEach(metric => {
+                    const [label, value] = metric.split(': ');
+                    const metricCard = `
+                        <div class="col-md-3 mb-3">
+                            <div class="metric-card">
+                                <div class="metric-value">${value}</div>
+                                <div class="metric-label">${label}</div>
+                            </div>
+                        </div>
+                    `;
+                    metricsContainer.insertAdjacentHTML('beforeend', metricCard);
+                });
+            }
+        }
+
+        function displayInsights(insights) {
+            const insightsContainer = document.getElementById('insightsContent');
+            insightsContainer.innerHTML = '';
+            
+            // Executive Summary
+            if (insights.executive_summary) {
+                insightsContainer.innerHTML += `
+                    <div class="insight-section">
+                        <h3><i class="bi bi-graph-up"></i> ${insights.executive_summary.title}</h3>
+                        <p>${insights.executive_summary.content}</p>
+                    </div>
+                `;
+            }
+            
+            // Product Performance
+            if (insights.product_performance) {
+                const perf = insights.product_performance;
+                insightsContainer.innerHTML += `
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="insights-card">
+                                <h5><i class="bi bi-trophy"></i> Top Performer</h5>
+                                <h6>${perf.top_performer.product}</h6>
+                                <p>Units Sold: ${perf.top_performer.units_sold.toLocaleString()}</p>
+                                <p>Revenue: $${perf.top_performer.revenue.toLocaleString()}</p>
+                                <small>${perf.top_performer.insight}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="insights-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                <h5><i class="bi bi-exclamation-triangle"></i> Needs Attention</h5>
+                                <h6>${perf.bottom_performer.product}</h6>
+                                <p>Units Sold: ${perf.bottom_performer.units_sold.toLocaleString()}</p>
+                                <p>Revenue: $${perf.bottom_performer.revenue.toLocaleString()}</p>
+                                <small>${perf.bottom_performer.insight}</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Pricing Strategy
+            if (insights.pricing_strategy) {
+                const pricing = insights.pricing_strategy;
+                insightsContainer.innerHTML += `
+                    <div class="insight-section">
+                        <h3><i class="bi bi-tag"></i> ${pricing.title}</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Price Elasticity Analysis</h5>
+                                <p>${pricing.price_elasticity.insight}</p>
+                                <p><strong>Recommendation:</strong> ${pricing.price_elasticity.recommendation}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Opportunity Products</h5>
+                                <p>${pricing.opportunity_products.insight}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Growth Opportunities
+            if (insights.growth_opportunities) {
+                const growth = insights.growth_opportunities;
+                insightsContainer.innerHTML += `
+                    <div class="insight-section">
+                        <h3><i class="bi bi-rocket"></i> ${growth.title}</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Market Trend</h5>
+                                <p>${growth.market_trend}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>High Potential Products</h5>
+                                <p>${growth.high_potential_products.insight}</p>
+                                <ul>
+                                    ${growth.high_potential_products.products.map(product => `<li>${product}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function displayActions(insights) {
+            const actionsContainer = document.getElementById('actionsContent');
+            actionsContainer.innerHTML = '';
+            
+            if (insights.action_items) {
+                const actions = insights.action_items;
+                actionsContainer.innerHTML += `
+                    <div class="insight-section">
+                        <h3><i class="bi bi-check2-square"></i> ${actions.title}</h3>
+                        
+                        <h4 class="mt-4">Priority 1 - Immediate Actions</h4>
+                        ${actions.priority_1.map(item => `
+                            <div class="action-item">
+                                <i class="bi bi-exclamation-circle text-danger"></i> ${item}
+                            </div>
+                        `).join('')}
+                        
+                        <h4 class="mt-4">Priority 2 - Next 30 Days</h4>
+                        ${actions.priority_2.map(item => `
+                            <div class="action-item">
+                                <i class="bi bi-clock text-warning"></i> ${item}
+                            </div>
+                        `).join('')}
+                        
+                        <h4 class="mt-4">Priority 3 - Next 90 Days</h4>
+                        ${actions.priority_3.map(item => `
+                            <div class="action-item">
+                                <i class="bi bi-calendar text-info"></i> ${item}
+                            </div>
+                        `).join('')}
+                        
+                        <div class="mt-4">
+                            <h4>Timeline Summary</h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="alert alert-danger">
+                                        <strong>Immediate:</strong> ${actions.timeline.immediate}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="alert alert-warning">
+                                        <strong>30 Days:</strong> ${actions.timeline['30_days']}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="alert alert-info">
+                                        <strong>90 Days:</strong> ${actions.timeline['90_days']}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+    </script>
+
+    <!-- Upload History Modal -->
+    <div class="modal fade" id="uploadHistoryModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-history me-2"></i>Upload History
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="uploadHistoryContent">
+                        <div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Details Modal -->
+    <div class="modal fade" id="uploadDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-chart-line me-2"></i>Upload Analysis Results
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="uploadDetailsContent">
+                        <!-- Details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Authentication functions
+        let currentUser = null;
+
+        async function checkAuthStatus() {
+            try {
+                const response = await fetch('/api/auth/current-user');
+                const data = await response.json();
+                
+                if (data.success) {
+                    currentUser = data.user;
+                    document.getElementById('currentUsername').textContent = data.user.username;
+                } else {
+                    window.location.href = '/auth';
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                window.location.href = '/auth';
+            }
+        }
+
+        async function logout() {
+            try {
+                const response = await fetch('/api/auth/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    window.location.href = '/auth';
+                } else {
+                    alert('Logout failed');
+                }
+            } catch (error) {
+                console.error('Logout error:', error);
+                alert('Network error during logout');
+            }
+        }
+
+        async function showUploadHistory() {
+            const modal = new bootstrap.Modal(document.getElementById('uploadHistoryModal'));
+            const content = document.getElementById('uploadHistoryContent');
+            
+            content.innerHTML = `
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            `;
+            
+            modal.show();
+            
+            try {
+                const response = await fetch('/api/auth/upload-history');
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayUploadHistory(data.uploads);
+                } else {
+                    content.innerHTML = `
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            Failed to load upload history: ${data.error}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Upload history error:', error);
+                content.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Network error loading upload history
+                    </div>
+                `;
+            }
+        }
+
+        function displayUploadHistory(uploads) {
+            const content = document.getElementById('uploadHistoryContent');
+            
+            if (uploads.length === 0) {
+                content.innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">No Upload History</h5>
+                        <p class="text-muted">You haven't uploaded any data yet.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const table = `
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>File Name</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${uploads.map(upload => `
+                                <tr>
+                                    <td>${formatDate(upload.created_at)}</td>
+                                    <td>${upload.filename}</td>
+                                    <td>
+                                        <span class="badge bg-${upload.file_type === 'csv' ? 'primary' : 'info'}">
+                                            ${upload.file_type.toUpperCase()}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-${getStatusColor(upload.status)}">
+                                            ${upload.status.toUpperCase()}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        ${upload.status === 'completed' ? `
+                                            <button class="btn btn-sm btn-outline-primary" onclick="viewUploadDetails('${upload.upload_id}')">
+                                                <i class="fas fa-eye me-1"></i>View Results
+                                            </button>
+                                        ` : `
+                                            <span class="text-muted">
+                                                <i class="fas fa-clock me-1"></i>Processing...
+                                            </span>
+                                        `}
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            content.innerHTML = table;
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            const date = new Date(dateString);
+            return date.toLocaleString();
+        }
+
+        function getStatusColor(status) {
+            switch (status) {
+                case 'completed': return 'success';
+                case 'processing': return 'warning';
+                case 'failed': return 'danger';
+                default: return 'secondary';
+            }
+        }
+
+        async function viewUploadDetails(uploadId) {
+            const modal = new bootstrap.Modal(document.getElementById('uploadDetailsModal'));
+            const content = document.getElementById('uploadDetailsContent');
+            
+            content.innerHTML = `
+                <div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            `;
+            
+            modal.show();
+            
+            try {
+                const response = await fetch(`/api/auth/upload-details/${uploadId}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayUploadDetails(data.upload);
+                } else {
+                    content.innerHTML = `
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            Failed to load upload details: ${data.error}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Upload details error:', error);
+                content.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Network error loading upload details
+                    </div>
+                `;
+            }
+        }
+
+        function displayUploadDetails(upload) {
+            const content = document.getElementById('uploadDetailsContent');
+            const results = upload.results;
+            
+            if (!results) {
+                content.innerHTML = `
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        No analysis results available for this upload
+                    </div>
+                `;
+                return;
+            }
+            
+            // Display the same graphs and insights as the main dashboard
+            content.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6><i class="fas fa-chart-bar me-2"></i>Most Selling Products</h6>
+                            </div>
+                            <div class="card-body">
+                                <div id="detailsMostSelling"></div>
+                                <p class="mt-2"><small>${results.most_selling.note}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6><i class="fas fa-chart-line me-2"></i>Sales Prediction</h6>
+                            </div>
+                            <div class="card-body">
+                                <div id="detailsSalesPrediction"></div>
+                                <p class="mt-2"><small>${results.sales_prediction.note}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6><i class="fas fa-lightbulb me-2"></i>Business Insights</h6>
+                            </div>
+                            <div class="card-body">
+                                <div id="detailsInsights"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Render the graphs
+            if (results.most_selling.graph) {
+                Plotly.newPlot('detailsMostSelling', JSON.parse(results.most_selling.graph));
+            }
+            if (results.sales_prediction.graph) {
+                Plotly.newPlot('detailsSalesPrediction', JSON.parse(results.sales_prediction.graph));
+            }
+            
+            // Display insights
+            if (results.insights) {
+                displayInsights(results.insights, 'detailsInsights');
+            }
+        }
+
+        // Check authentication status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+        });
+    </script>
+</body>
+</html>

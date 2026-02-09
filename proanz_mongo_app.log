@@ -1,0 +1,103 @@
+2026-02-09 15:28:17,615 - __main__ - INFO - Connected to MongoDB successfully
+2026-02-09 15:28:17,678 - engineio.server - INFO - Server initialized for threading.
+2026-02-09 15:28:17,681 - __main__ - INFO - MongoDB-based ProAnz app starting...
+2026-02-09 15:28:17,691 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-02-09 15:28:17,692 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-09 15:28:17,692 - werkzeug - INFO -  * Restarting with stat
+2026-02-09 15:28:39,492 - __main__ - INFO - Connected to MongoDB successfully
+2026-02-09 15:28:39,527 - engineio.server - INFO - Server initialized for threading.
+2026-02-09 15:28:39,531 - __main__ - INFO - MongoDB-based ProAnz app starting...
+2026-02-09 15:28:39,537 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-02-09 15:28:39,537 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-09 15:28:39,537 - werkzeug - INFO -  * Restarting with stat
+2026-02-09 15:28:45,169 - __main__ - INFO - Connected to MongoDB successfully
+2026-02-09 15:28:45,204 - engineio.server - INFO - Server initialized for threading.
+2026-02-09 15:28:45,208 - __main__ - INFO - MongoDB-based ProAnz app starting...
+2026-02-09 15:28:45,209 - werkzeug - WARNING -  * Debugger is active!
+2026-02-09 15:28:45,217 - werkzeug - INFO -  * Debugger PIN: 766-453-208
+2026-02-09 15:29:20,172 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:20] "[32mGET / HTTP/1.1[0m" 302 -
+2026-02-09 15:29:20,446 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:20] "GET /auth HTTP/1.1" 200 -
+2026-02-09 15:29:20,793 - __main__ - WARNING - 404 Not Found: http://localhost:5000/favicon.ico
+2026-02-09 15:29:20,793 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:20] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-02-09 15:29:27,393 - __main__ - INFO - User logged in: ghanishth
+2026-02-09 15:29:27,394 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:27] "POST /api/auth/login HTTP/1.1" 200 -
+2026-02-09 15:29:28,929 - __main__ - INFO - Serving index page
+2026-02-09 15:29:28,940 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:28] "GET / HTTP/1.1" 200 -
+2026-02-09 15:29:30,895 - engineio.server - INFO - vf1eKxa6A1ECXVfZAAAA: Sending packet OPEN data {'sid': 'vf1eKxa6A1ECXVfZAAAA', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2026-02-09 15:29:30,896 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:30] "GET /socket.io/?EIO=4&transport=polling&t=Pn1rueQ HTTP/1.1" 200 -
+2026-02-09 15:29:30,940 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:30] "GET /api/auth/current-user HTTP/1.1" 200 -
+2026-02-09 15:29:31,159 - engineio.server - INFO - vf1eKxa6A1ECXVfZAAAA: Received packet MESSAGE data 0
+2026-02-09 15:29:31,162 - __main__ - INFO - Client connected: spWzbAITR-OeqYueAAAB
+2026-02-09 15:29:31,162 - socketio.server - INFO - emitting event "Connected" to spWzbAITR-OeqYueAAAB [/]
+2026-02-09 15:29:31,164 - engineio.server - INFO - vf1eKxa6A1ECXVfZAAAA: Sending packet MESSAGE data 2["Connected",{"message":"Welcome to real-time analytics!"}]
+2026-02-09 15:29:31,164 - engineio.server - INFO - vf1eKxa6A1ECXVfZAAAA: Sending packet MESSAGE data 0{"sid":"spWzbAITR-OeqYueAAAB"}
+2026-02-09 15:29:31,165 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:31] "POST /socket.io/?EIO=4&transport=polling&t=Pn1rujM&sid=vf1eKxa6A1ECXVfZAAAA HTTP/1.1" 200 -
+2026-02-09 15:29:31,222 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:31] "GET /socket.io/?EIO=4&transport=polling&t=Pn1rujT&sid=vf1eKxa6A1ECXVfZAAAA HTTP/1.1" 200 -
+2026-02-09 15:29:31,222 - engineio.server - INFO - vf1eKxa6A1ECXVfZAAAA: Received request to upgrade to websocket
+2026-02-09 15:29:31,242 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:31] "GET /socket.io/?EIO=4&transport=polling&t=Pn1ruof&sid=vf1eKxa6A1ECXVfZAAAA HTTP/1.1" 200 -
+2026-02-09 15:29:31,248 - engineio.server - INFO - vf1eKxa6A1ECXVfZAAAA: Upgrade to websocket successful
+2026-02-09 15:29:53,012 - __main__ - INFO - Client disconnected: spWzbAITR-OeqYueAAAB
+2026-02-09 15:29:53,012 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:53] "GET /socket.io/?EIO=4&transport=websocket&sid=vf1eKxa6A1ECXVfZAAAA HTTP/1.1" 200 -
+2026-02-09 15:29:53,335 - __main__ - INFO - Serving index page
+2026-02-09 15:29:53,343 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:53] "GET / HTTP/1.1" 200 -
+2026-02-09 15:29:53,602 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Sending packet OPEN data {'sid': 'msTb-9N9eHydavHeAAAC', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2026-02-09 15:29:53,603 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:53] "GET /socket.io/?EIO=4&transport=polling&t=Pn1r-EY HTTP/1.1" 200 -
+2026-02-09 15:29:53,836 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Received packet MESSAGE data 0
+2026-02-09 15:29:53,837 - __main__ - INFO - Client connected: qy-KuhBnZfQsTFb4AAAD
+2026-02-09 15:29:53,837 - socketio.server - INFO - emitting event "Connected" to qy-KuhBnZfQsTFb4AAAD [/]
+2026-02-09 15:29:53,837 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Sending packet MESSAGE data 2["Connected",{"message":"Welcome to real-time analytics!"}]
+2026-02-09 15:29:53,838 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Sending packet MESSAGE data 0{"sid":"qy-KuhBnZfQsTFb4AAAD"}
+2026-02-09 15:29:53,838 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:53] "POST /socket.io/?EIO=4&transport=polling&t=Pn1r-G8&sid=msTb-9N9eHydavHeAAAC HTTP/1.1" 200 -
+2026-02-09 15:29:53,859 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:53] "GET /api/auth/current-user HTTP/1.1" 200 -
+2026-02-09 15:29:53,914 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:53] "GET /socket.io/?EIO=4&transport=polling&t=Pn1r-G9&sid=msTb-9N9eHydavHeAAAC HTTP/1.1" 200 -
+2026-02-09 15:29:53,914 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Received request to upgrade to websocket
+2026-02-09 15:29:53,985 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:53] "GET /socket.io/?EIO=4&transport=polling&t=Pn1r-Lp&sid=msTb-9N9eHydavHeAAAC HTTP/1.1" 200 -
+2026-02-09 15:29:53,990 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Upgrade to websocket successful
+2026-02-09 15:29:57,169 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:29:57] "GET /api/auth/upload-history HTTP/1.1" 200 -
+2026-02-09 15:30:18,603 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Sending packet PING data None
+2026-02-09 15:30:18,604 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Received packet PONG data 
+2026-02-09 15:30:43,606 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Sending packet PING data None
+2026-02-09 15:30:43,607 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Received packet PONG data 
+2026-02-09 15:31:08,609 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Sending packet PING data None
+2026-02-09 15:31:08,609 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Received packet PONG data 
+2026-02-09 15:31:33,611 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Sending packet PING data None
+2026-02-09 15:31:33,612 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Received packet PONG data 
+2026-02-09 15:31:58,613 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Sending packet PING data None
+2026-02-09 15:31:58,615 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Received packet PONG data 
+2026-02-09 15:32:23,616 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Sending packet PING data None
+2026-02-09 15:32:23,619 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Received packet PONG data 
+2026-02-09 15:32:48,622 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Sending packet PING data None
+2026-02-09 15:32:48,623 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Received packet PONG data 
+2026-02-09 15:33:13,625 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Sending packet PING data None
+2026-02-09 15:33:13,626 - engineio.server - INFO - msTb-9N9eHydavHeAAAC: Received packet PONG data 
+2026-02-09 15:33:14,901 - __main__ - INFO - Client disconnected: qy-KuhBnZfQsTFb4AAAD
+2026-02-09 15:33:14,902 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:33:14] "GET /socket.io/?EIO=4&transport=websocket&sid=msTb-9N9eHydavHeAAAC HTTP/1.1" 200 -
+2026-02-09 15:33:15,236 - __main__ - INFO - Serving index page
+2026-02-09 15:33:15,237 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:33:15] "GET / HTTP/1.1" 200 -
+2026-02-09 15:33:15,559 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Sending packet OPEN data {'sid': 'rV4abl6pirDX3mA6AAAE', 'upgrades': ['websocket'], 'pingTimeout': 20000, 'pingInterval': 25000}
+2026-02-09 15:33:15,560 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:33:15] "GET /socket.io/?EIO=4&transport=polling&t=Pn1slZY HTTP/1.1" 200 -
+2026-02-09 15:33:15,906 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Received packet MESSAGE data 0
+2026-02-09 15:33:15,912 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:33:15] "GET /api/auth/current-user HTTP/1.1" 200 -
+2026-02-09 15:33:15,910 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Received request to upgrade to websocket
+2026-02-09 15:33:15,914 - __main__ - INFO - Client connected: 2F5tU14a-LgxyKp0AAAF
+2026-02-09 15:33:15,915 - socketio.server - INFO - emitting event "Connected" to 2F5tU14a-LgxyKp0AAAF [/]
+2026-02-09 15:33:15,916 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:33:15] "GET /socket.io/?EIO=4&transport=polling&t=Pn1sla4&sid=rV4abl6pirDX3mA6AAAE HTTP/1.1" 200 -
+2026-02-09 15:33:15,915 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Sending packet MESSAGE data 2["Connected",{"message":"Welcome to real-time analytics!"}]
+2026-02-09 15:33:15,916 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Sending packet MESSAGE data 0{"sid":"2F5tU14a-LgxyKp0AAAF"}
+2026-02-09 15:33:15,917 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:33:15] "POST /socket.io/?EIO=4&transport=polling&t=Pn1sla3&sid=rV4abl6pirDX3mA6AAAE HTTP/1.1" 200 -
+2026-02-09 15:33:16,142 - werkzeug - INFO - 127.0.0.1 - - [09/Feb/2026 15:33:16] "GET /socket.io/?EIO=4&transport=polling&t=Pn1slfF&sid=rV4abl6pirDX3mA6AAAE HTTP/1.1" 200 -
+2026-02-09 15:33:16,152 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Upgrade to websocket successful
+2026-02-09 15:33:40,561 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Sending packet PING data None
+2026-02-09 15:33:40,562 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Received packet PONG data 
+2026-02-09 15:34:05,564 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Sending packet PING data None
+2026-02-09 15:34:05,566 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Received packet PONG data 
+2026-02-09 15:34:30,568 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Sending packet PING data None
+2026-02-09 15:34:30,570 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Received packet PONG data 
+2026-02-09 15:34:55,571 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Sending packet PING data None
+2026-02-09 15:34:55,572 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Received packet PONG data 
+2026-02-09 15:35:20,573 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Sending packet PING data None
+2026-02-09 15:35:20,573 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Received packet PONG data 
+2026-02-09 15:35:45,576 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Sending packet PING data None
+2026-02-09 15:35:45,578 - engineio.server - INFO - rV4abl6pirDX3mA6AAAE: Received packet PONG data 
