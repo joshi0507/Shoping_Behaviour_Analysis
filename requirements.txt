@@ -9,3 +9,5 @@ werkzeug==2.3.7
 python-socketio==5.8.0
 requests>=2.25.0
 protobuf>=3.20.0
+gunicorn
+eventlet
