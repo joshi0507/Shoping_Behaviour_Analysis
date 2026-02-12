@@ -7,7 +7,7 @@
 
 Register page
 
-<img width="220" height="300" alt="image" src="https://github.com/user-attachments/assets/04725493-4514-4da0-bd59-6403122705c9" />
+<img width="220/2" height="300/2" alt="image" src="https://github.com/user-attachments/assets/04725493-4514-4da0-bd59-6403122705c9" />
 
 Login page
 
