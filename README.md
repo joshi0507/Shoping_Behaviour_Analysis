@@ -11,7 +11,7 @@ Register page
 
 Login page
 
-<img width="340" height="294" alt="image" src="https://github.com/user-attachments/assets/2391563d-e5b1-4930-9cd3-e8523dcdce43" />
+<img width="340/2" height="294/2" alt="image" src="https://github.com/user-attachments/assets/2391563d-e5b1-4930-9cd3-e8523dcdce43" />
 
 Charts
 
